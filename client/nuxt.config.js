@@ -58,8 +58,12 @@ export default {
           },
           logout: {
             url: '/logout'
+          },
+          refugees:{
+            url: '/refugees'
           }
-        }
+        },
+
       },
     }
   },

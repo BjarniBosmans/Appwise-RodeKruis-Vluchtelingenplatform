@@ -23,7 +23,7 @@
         </button>
         <div v-if="showMenu" class="absolute bottom-0 right-6 bg-gray-100 transform translate-y-full z-20" id="dropdown">
           <a href="#" class="block px-4 py-2 text-xl hover:bg-blue-200">Profiel</a>
-          <a href="#" class="block px-4 py-2 text-xl hover:bg-blue-200">Uitloggen</a>
+          <NuxtLink to="/login" class="block px-4 py-2 text-xl hover:bg-blue-200">Uitloggen</NuxtLink>
         </div>
       </div>
     </nav>

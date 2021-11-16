@@ -6,6 +6,9 @@ module.exports = {
       },
       zIndex: {
         '-10': '-10',
+      },
+      maxWidth:{
+        'pagewidth': '1800px'
       }
     }
   }

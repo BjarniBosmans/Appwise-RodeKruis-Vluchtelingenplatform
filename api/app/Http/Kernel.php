@@ -30,6 +30,11 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middlewareGroups = [
+
+//        'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+//        'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+//        'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
+
         'web' => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
