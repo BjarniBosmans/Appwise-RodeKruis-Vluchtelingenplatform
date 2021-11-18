@@ -4,10 +4,6 @@
 
 <script>
 export default {
-  name: "AdminPage"
+  name: "AttendantDrawer"
 }
 </script>
-
-<style scoped>
-
-</style>

@@ -8,7 +8,7 @@
           </span>
         </h1>
     <p class="text-2xl">
-      Dit is de pagina om uw aangewezen vluchtelingen te beheren.
+      Lorem ipsum bla bla bla
     </p>
   </section>
   <section class="relative bg-gray-200 p-8 pr-8 pl-8 rounded">
@@ -19,22 +19,32 @@
   </section>
   <section class=" bg-gray-200 px-2 p-8 pr-8 pl-8 rounded">
   <p class="mb-2">Aantal vluchtelingen</p>
-    <h1 class="text-4xl">Aantal</h1>
+    <h1 class="text-4xl">{{ refugees.length }}</h1>
   </section>
   </div>
 </template>
 
 <script>
 export default {
-  name: "MentorPage",
-
+  name: "MainPage",
+  middleware: 'auth',
+  data:() => ({
+    refugees: []
+  }),
   mounted() {
     const date= new Date();
     document.getElementById('dateNow').textContent= date.toLocaleDateString();
+    this.getRefugees();
+  },
+  methods: {
+    getRefugees() {
+      this.$axios.$get('/api/refugees')
+        .then((resp) => {
+          this.refugees = resp.users
+        })
+        .catch((err) => console.log(err))
+    }
   }
-
-
-
 }
 </script>
 
