@@ -6,21 +6,21 @@
         <div class="flex justify-center items-center">
           <h1 class="text-5xl">
       <span style="color: red">
-       Toevoegen
+       Add
       </span>
-            vluchteling
+            refugee
           </h1>
         </div>
       </div>
       <div class="p-8">
         <div class="justify-center">
           <section class="bg-gray-200 rounded p-4 w-5/12 float-left">
-            <label class="text-2xl">Voornaam</label>
+            <label class="text-2xl">Firstname</label>
             <br>
             <input class="bg-gray-200 rounded w-full text-2xl p-2" id="firstname-input"/>
           </section>
           <section class="bg-gray-200 rounded p-4 w-5/12  float-right">
-            <label class="text-2xl">Achternaam</label>
+            <label class="text-2xl">Lastname</label>
             <br>
             <input class="bg-gray-200 rounded w-full text-2xl p-2" id="lastname-input"/>
           </section>
@@ -33,20 +33,20 @@
         </section>
         <br>
         <section class="bg-gray-200 rounded p-4 w-full ">
-          <label class="text-2xl">Wachtwoord</label>
+          <label class="text-2xl">Password</label>
           <br>
           <input class="bg-gray-200 rounded text-2xl w-full p-2" id="password-input" type="password"/>
         </section>
         <br>
         <section class="bg-gray-200 rounded p-4 w-full ">
-          <label class="text-2xl">Land van herkomst</label>
+          <label class="text-2xl">Country of origin</label>
           <br>
           <input class="bg-gray-200 rounded text-2xl w-full p-2" id="country-input"/>
         </section>
       </div>
       <div class="p-4 flex justify-between items-center">
-        <button class="text-3xl rounded p-2 border-gray-300 border-2" @click="$emit('closeReg')">Terug</button>
-        <button class="text-3xl bg-black text-white rounded p-2 border-gray-300 border-2" @click="showRegResult=true">Toevoegen</button>
+        <button class="text-3xl rounded p-2 border-gray-300 border-2" @click="$emit('closeReg')">Back</button>
+        <button class="text-3xl bg-black text-white rounded p-2 border-gray-300 border-2" @click="showRegResult=true">Add</button>
       </div>
     </div>
     <!--</form>-->

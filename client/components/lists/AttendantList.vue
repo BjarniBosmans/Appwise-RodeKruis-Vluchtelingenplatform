@@ -4,39 +4,39 @@
   <div class="h-8 border-b-2 m-12">
     <section class="">
       <button class="float-left right-0 text-xl bg-gray-200 text-black rounded p-4
-       focus:text-white focus:bg-black hover:text-white hover:bg-black" @click="tableSwitch=false" autofocus>Vluchtelingen</button>
+       focus:text-white focus:bg-black hover:text-white hover:bg-black" @click="tableSwitch=false" autofocus>Refugees</button>
       <button class="float-left left-0 text-xl bg-gray-200 text-black rounded p-4
-      focus:text-white focus:bg-black hover:text-white hover:bg-black" @click="tableSwitch=true">Kaarten</button>
+      focus:text-white focus:bg-black hover:text-white hover:bg-black" @click="tableSwitch=true">Cards</button>
       <button class="float-right text-xl bg-gray-200 text-black rounded p-4 justify-center items-center
-      focus:text-white focus:bg-black hover:text-white hover:bg-black flex w-1/4 h-16 overflow-clip" @click="showRegistration=!showRegistration">+Vluchteling toevoegen</button>
+      focus:text-white focus:bg-black hover:text-white hover:bg-black flex w-1/4 h-16 overflow-clip" @click="showRegistration=!showRegistration">+Add</button>
     </section>
     <br><br><br>
 
     <div class="bg-gray-100 grid grid-cols-3 md:grid-cols-4 pb-8 justify-center items-center" v-if="!tableSwitch">
       <div class="bg-gray-200 pr-8 pl-8 pt-6 pb-8 text-2xl truncate flex items-center">
-        Volledige naam <button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
+        Full name<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
       </div>
       <div class="bg-gray-200 pr-8 pl-8 pt-6 pb-8 text-2xl truncate flex items-center">
-        Voltooide ticks <button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
+        Completed Ticks<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
       </div>
       <div class="bg-gray-200 pr-8 pl-8 pt-6 pb-8 text-2xl truncate flex items-center">
-        Land van afkomst <button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
+        Country of origin<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
       </div>
       <div class="bg-gray-200 pr-8 pl-8 pt-6 pb-8 text-2xl truncate flex items-center hidden md:block">
-        Unieke code <button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
+        Unique code
       </div>
       </div>
-      <div  v-for="refugee in refugees" class="bg-gray-100 grid grid-cols-3 md:grid-cols-4 pb-8 justify-center items-center" v-if="!tableSwitch" onclick="">
-        <div class="column pr-8 pl-8 pt-6 pb-8 text-2xl truncate flex items-center">
+      <div  v-for="refugee in refugees" class="bg-gray-100 grid grid-cols-3 md:grid-cols-4 pb-8 justify-center items-center" v-if="!tableSwitch">
+        <div class="column pr-8 pl-8 pt-6 pb-8 text-2xl truncate flex items-center" @click="">
         {{ refugee.firstname }} {{ refugee.lastname }}
         </div>
-        <div class="columnpr-8 pl-8 pt-6 pb-8 text-2xl truncate flex items-center">
+        <div class="columnpr-8 pl-8 pt-6 pb-8 text-2xl truncate flex items-center" @click="">
         {{ refugee.total_ticks }}
         </div>
-        <div class="column pr-8 pl-8 pt-6 pb-8 text-2xl truncate flex items-center">
+        <div class="column pr-8 pl-8 pt-6 pb-8 text-2xl truncate flex items-center" @click="">
         {{ refugee.country_of_origin }}
         </div>
-        <div class="column pr-8 pl-8 pt-6 pb-8 text-2xl truncate flex items-center hidden md:block" >
+        <div class="column pr-8 pl-8 pt-6 pb-8 text-2xl truncate flex items-center hidden md:block" @click="">
         {{ refugee.unique_code }}
         </div>
       </div>
