@@ -4,11 +4,11 @@
       <div class="pl-32 pr-32 p-4">
         <img class="justify-center w-full h-72" src="@/assets/Flag_of_the_Red_Cross.svg.png">
         <br>
-        <h1 class="text-4xl justify-center items-center w-full flex">Login</h1>
+        <h1 class="text-4xl justify-center items-center w-full flex">{{ $t('Login') }}</h1>
         <br>
           <div class="flex justify-center m-4">
-            <button class="text-2xl bg-gray-300 rounded p-4 focus:text-white focus:bg-black hover:text-white hover:bg-black" @click="showEmployee=true" autofocus>Attendant</button>
-            <button class="text-2xl bg-gray-300 rounded p-4 focus:text-white focus:bg-black hover:text-white hover:bg-black" @click="showEmployee=false">Refugee</button>
+            <button class="text-2xl bg-gray-300 rounded p-4 focus:text-white focus:bg-black hover:text-white hover:bg-black" @click="showEmployee=true" autofocus>{{ $t('Attendant')}}</button>
+            <button class="text-2xl bg-gray-300 rounded p-4 focus:text-white focus:bg-black hover:text-white hover:bg-black" @click="showEmployee=false">{{ $t('Refugee')}}</button>
           </div>
         <br>
         <hr class="shadow">
@@ -16,18 +16,18 @@
     <label class="text-xl p-2">E-mail</label>
     <input class="text-xl p-2 rounded w-full border-gray-300 border-2"/>
     <br><br>
-    <label class="text-xl p-2">Password</label>
+    <label class="text-xl p-2">{{ $t('Password')}}</label>
     <input class="text-xl p-2 rounded w-full border-gray-300 border-2" type="password"/>
     </div>
     <div v-if="!showEmployee" class="p-4">
-      <label class="text-xl p-2">Unique code</label>
+      <label class="text-xl p-2">{{ $t('Unique code')}}</label>
       <input class="text-xl p-2 rounded w-full border-gray-300 border-2"/>
       <br><br>
-      <label class="text-xl p-2">Password</label>
+      <label class="text-xl p-2">{{ $t('Password')}}</label>
       <input class="text-xl p-2 rounded w-full border-gray-300 border-2" type="password"/>
     </div>
         <nuxt-link to="/">
-    <button class="text-2xl bg-gray-300 w-full rounded p-4 justify-center flex hover:text-white hover:bg-black">Login</button>
+    <button class="text-2xl bg-gray-300 w-full rounded p-4 justify-center flex hover:text-white hover:bg-black">{{ $t('Login') }}</button>
         </nuxt-link>
       </div>
 </div>
@@ -46,4 +46,6 @@ export default {
   }
 }
 </script>
+<i18n>
 
+</i18n>

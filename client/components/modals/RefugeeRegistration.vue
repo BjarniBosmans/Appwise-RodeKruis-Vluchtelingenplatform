@@ -6,21 +6,21 @@
         <div class="flex justify-center items-center">
           <h1 class="text-5xl">
       <span style="color: red">
-       Add
+       {{ $t('Add')}}
       </span>
-            refugee
+            {{ $t('refugee')}}
           </h1>
         </div>
       </div>
       <div class="p-8">
         <div class="justify-center">
           <section class="bg-gray-200 rounded p-4 w-5/12 float-left">
-            <label class="text-2xl">Firstname</label>
+            <label class="text-2xl">{{ $t('Firstname')}}</label>
             <br>
             <input class="bg-gray-200 rounded w-full text-2xl p-2" id="firstname-input"/>
           </section>
           <section class="bg-gray-200 rounded p-4 w-5/12  float-right">
-            <label class="text-2xl">Lastname</label>
+            <label class="text-2xl">{{ $t('Lastname')}}</label>
             <br>
             <input class="bg-gray-200 rounded w-full text-2xl p-2" id="lastname-input"/>
           </section>
@@ -33,20 +33,20 @@
         </section>
         <br>
         <section class="bg-gray-200 rounded p-4 w-full ">
-          <label class="text-2xl">Password</label>
+          <label class="text-2xl">{{ $t('Password')}}</label>
           <br>
           <input class="bg-gray-200 rounded text-2xl w-full p-2" id="password-input" type="password"/>
         </section>
         <br>
         <section class="bg-gray-200 rounded p-4 w-full ">
-          <label class="text-2xl">Country of origin</label>
+          <label class="text-2xl">{{ $t('Country of origin')}}</label>
           <br>
           <input class="bg-gray-200 rounded text-2xl w-full p-2" id="country-input"/>
         </section>
       </div>
       <div class="p-4 flex justify-between items-center">
-        <button class="text-3xl rounded p-2 border-gray-300 border-2" @click="$emit('closeReg')">Back</button>
-        <button class="text-3xl bg-black text-white rounded p-2 border-gray-300 border-2" @click="showRegResult=true">Add</button>
+        <button class="text-3xl rounded p-2 border-gray-300 border-2" @click="$emit('closeReg')">{{ $t('Back')}}</button>
+        <button class="text-3xl bg-black text-white rounded p-2 border-gray-300 border-2" @click="showRegResult=true">{{ $t('Add')}}</button>
       </div>
     </div>
     <!--</form>-->
