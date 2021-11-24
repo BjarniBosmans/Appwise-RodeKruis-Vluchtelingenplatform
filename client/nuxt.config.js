@@ -22,7 +22,8 @@ export default {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -73,7 +74,11 @@ export default {
           "Continue": "Continue",
           "Login": "Login",
           "Attendant": "Attendant",
-          "Refugee": "Refugee"
+          "attendant": "attendant",
+          "Attendants": "Attendants",
+          "Refugee": "Refugee",
+          "Add refugee": "Add refugee",
+          "Add attendant": "Add attendant"
         },
         fr: {
           "Welcome": "Bienvenue",
@@ -101,7 +106,12 @@ export default {
           "Continue": "Continuer",
           "Login": "Connexion",
           "Attendant": "Préposé",
-          "Refugee": "Réfugié"
+          "attendant": "préposé",
+          "Attendants": "Préposés",
+          "Refugee": "Réfugié",
+          "Add refugee": "Ajouter réfugié",
+          "Add attendant": "Ajouter préposé"
+
         },
         de: {
           "Welcome": "Willkommen",
@@ -129,12 +139,16 @@ export default {
           "Continue": "Weitermachen",
           "Login": "Anmeldung",
           "Attendant": "Begleiter",
-          "Refugee": "Flüchtling"
+          "attendant": "begleiter",
+          "Attendants": "Begleiters",
+          "Refugee": "Flüchtling",
+          "Add refugee": "Flüchtling hinzufügen",
+          "Add attendant": "Begleiter hinzufügen"
         },
         nl:{
           "Welcome": "Welkom",
           "This is your hub to manage all the people assigned to you, make sure to notify the person in question if something has changed for them." :
-            "Dies ist Ihr hub, um alle Ihnen zugewiesenen Personen zu verwalten. Stellen Sie sicher, dass die betreffende Person benachrichtigt wird, wenn sich für sie etwas geändert hat.",
+            "Dit is uw centraal platform om al de mensen te beheren die u zijn toegewezen, zorg er zeker voor dat de persoon in kwestie op de hoogte is als u iets voor hun veranderd heeft.",
           "Date": "Datum",
           "Number of refugees": "Aantal vluchtelingen",
           "Search": "Zoeken",
@@ -157,10 +171,15 @@ export default {
           "Continue": "Doorgaan",
           "Login": "Aanmelden",
           "Attendant": "Begeleider",
-          "Refugee": "Vluchteling"
+          "attendant": "begeleider",
+          "Attendants": "Begeleiders",
+          "Refugee": "Vluchteling",
+          "Add refugee": "Toevoegen vluchteling",
+          "Add attendant": "Toevoegen begeleider"
         }
       }
-    }},
+    }
+    },
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
     axios: {
@@ -182,6 +201,15 @@ export default {
             },
             refugees: {
               url: '/refugees'
+            },
+            addRefugee: {
+              url: '/refugees/add'
+            },
+            attendants:{
+              url: '/attendants'
+            },
+            addAttendant: {
+              url: '/attendants/add'
             }
           },
 

@@ -21,8 +21,11 @@ class User extends Authenticatable
         'firstname',
         'lastname',
         'email',
-        'password',
         'role',
+        'password',
+        'country_of_origin',
+        'unique_code',
+        'Cards'
     ];
 
     /**

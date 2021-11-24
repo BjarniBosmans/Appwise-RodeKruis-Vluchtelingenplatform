@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use http\Env\Request;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -16,11 +16,29 @@ class UserController extends Controller
         return response(['users' => User::where('role', 'attendant')->get()]);
     }
 
-    public function addRefugee(){
+    public function addRefugee(Request $request){
         $user= User::create([
+        'firstname' => $request->input('firstname'),
+        'lastname' => $request->input('lastname'),
+        'email' => $request->input('email'),
+        'password' => $request->input('password'),
+        'role' => $request->input('role'),
+        'country_of_origin' => $request->input('country_of_origin'),
+        'unique_code' => $this->generateUniqueCode()
+        ]);
+        return $user;
+    }
+
+    public function addAttendant(Request $request){
+        $user= User::create([
+            'firstname' => $request->input('firstname'),
+            'lastname' => $request->input('lastname'),
+            'email' => $request->input('email'),
+            'role' => $request->input('role'),
+            'password' => $request->input('password'),
 
         ]);
-
+        return $user;
     }
 
     public function showUser(User $user){
@@ -38,19 +56,19 @@ class UserController extends Controller
         $codeLength=6;
         $charNumber= strlen($chars);
 
-        $code='';
+        $unique_code='';
 
-        while(strlen($code) < $codeLength){
+        while(strlen($unique_code) < $codeLength){
         $position= rand(0, $charNumber -1);
         $char= $chars[$position];
-        $code= $code.$char;
+        $unique_code= $unique_code.$char;
         }
 
-        if(User::where('code', $code)->exists()){
+        if(User::where('unique_code', $unique_code)->exists()){
         $this->generateUniqueCode();
         }
 
-        return $code;
+        return $unique_code;
 
     }
 

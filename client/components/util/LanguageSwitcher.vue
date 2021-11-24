@@ -21,6 +21,7 @@
 
 <script>
 export default {
-  name: "LanguageSwitcher"
+  name: "LanguageSwitcher",
+
 }
 </script>

@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::post('/refugees/add', [\App\Http\Controllers\UserController::class, 'addRefugee']);
 
     Route::get('/attendants', [\App\Http\Controllers\UserController::class, 'showAttendants']);
-
+    Route::post('/attendants/add', [\App\Http\Controllers\UserController::class, 'addAttendant']);
 
 
 

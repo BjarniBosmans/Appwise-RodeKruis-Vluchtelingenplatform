@@ -26,7 +26,7 @@
       <label class="text-xl p-2">{{ $t('Password')}}</label>
       <input class="text-xl p-2 rounded w-full border-gray-300 border-2" type="password"/>
     </div>
-        <nuxt-link to="/">
+        <nuxt-link :to="localePath('/')">
     <button class="text-2xl bg-gray-300 w-full rounded p-4 justify-center flex hover:text-white hover:bg-black">{{ $t('Login') }}</button>
         </nuxt-link>
       </div>
@@ -46,6 +46,3 @@ export default {
   }
 }
 </script>
-<i18n>
-
-</i18n>

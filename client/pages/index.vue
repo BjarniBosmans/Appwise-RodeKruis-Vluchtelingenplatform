@@ -4,7 +4,8 @@
    <img class="-z-10 absolute w-full h-full" src="@/assets/rode_lijn.svg"/>
     <div class="max-w-7xl mx-auto">
     <MainPage />
-    <AttendantList/>
+<!--<AttendantList/> -->
+    <AdminList/>
     </div>
   </div>
 </template>
@@ -15,8 +16,10 @@ import MentorPage from "../components/MainPage";
 import MentorList from "../components/lists/AttendantList";
 import MainPage from "../components/MainPage";
 import AttendantList from "../components/lists/AttendantList";
-export default {
+import AdminList from "../components/lists/AdminList";
+export default{
   name: 'home',
-  components: {AttendantList, MainPage, Navigation}
+  components: {AdminList, AttendantList, MainPage, Navigation},
+
 }
 </script>

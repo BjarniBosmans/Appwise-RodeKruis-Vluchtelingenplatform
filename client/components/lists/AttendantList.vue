@@ -12,6 +12,7 @@
     </section>
     <br><br><br>
 
+    <!-- refugees -->
     <div class="bg-gray-100 grid grid-cols-3 md:grid-cols-4 pb-8 justify-center items-center" v-if="!tableSwitch">
       <div class="bg-gray-200 pr-8 pl-8 pt-6 pb-8 text-2xl truncate flex items-center">
         {{ $t('Full name')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
@@ -40,9 +41,15 @@
         {{ refugee.unique_code }}
         </div>
       </div>
-    </div>
 
-    <RefugeeRegistration v-if="showRegistration" @closeReg="showRegistration=false"/>
+    <!-- cards -->
+
+      <div>
+<div/>
+  </div>
+
+    <RefugeeRegistration class="bg-black bg-opacity-75" v-if="showRegistration" @closeReg="showRegistration=false"/>
+  </div>
   </div>
 </template>
 

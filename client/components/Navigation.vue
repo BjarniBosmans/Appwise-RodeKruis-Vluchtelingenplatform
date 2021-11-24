@@ -23,7 +23,7 @@
         </button>
         <div v-if="showMenu" class="rounded w-full absolute md:bottom-0 right-0 bg-gray-200 transform translate-y-full z-20" id="dropdown">
           <a href="#" class="block px-4 py-2 text-xl hover:bg-blue-200">{{ $t('Profile')}}</a>
-          <NuxtLink to="/login" class="block px-4 py-2 text-xl hover:bg-blue-200">{{ $t('Logout')}}</NuxtLink>
+          <NuxtLink :to="localePath('/login')" class="block px-4 py-2 text-xl hover:bg-blue-200">{{ $t('Logout')}}</NuxtLink>
         </div>
       </div>
     </nav>
