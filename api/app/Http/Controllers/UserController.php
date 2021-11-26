@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -17,33 +18,62 @@ class UserController extends Controller
     }
 
     public function addRefugee(Request $request){
+        $fields = $request->validate([
+            'firstname' => 'required|string',
+            'lastname' => 'required|string',
+            'email' => 'required|string|unique:users,email',
+            'password' => 'required|string',
+            'role' => 'required|string',
+            'country_of_origin' => 'required|string',
+        ]);
+
         $user= User::create([
-        'firstname' => $request->input('firstname'),
-        'lastname' => $request->input('lastname'),
-        'email' => $request->input('email'),
-        'password' => $request->input('password'),
-        'role' => $request->input('role'),
-        'country_of_origin' => $request->input('country_of_origin'),
+        'firstname' => $fields['firstname'],
+        'lastname' => $fields['lastname'],
+        'email' => $fields['email'],
+        'password' => bcrypt($fields['password']),
+        'role' => $fields['role'],
+        'country_of_origin' => $fields['country_of_origin'],
         'unique_code' => $this->generateUniqueCode()
         ]);
-        return $user;
+
+        $token = $user->createToken('myapptoken')->plainTextToken;
+
+        $response = [
+            'user' => $user,
+            'token' => $token
+        ];
+
+        return response($response, 201);
     }
 
     public function addAttendant(Request $request){
-        $user= User::create([
-            'firstname' => $request->input('firstname'),
-            'lastname' => $request->input('lastname'),
-            'email' => $request->input('email'),
-            'role' => $request->input('role'),
-            'password' => $request->input('password'),
-
+        $fields = $request->validate([
+            'firstname' => 'required|string',
+            'lastname' => 'required|string',
+            'email' => 'required|string|unique:users,email',
+            'password' => 'required|string',
+            'role' => 'required|string',
         ]);
-        return $user;
+
+        $user= User::create([
+            'firstname' => $fields['firstname'],
+            'lastname' => $fields['lastname'],
+            'email' => $fields['email'],
+            'password' => bcrypt($fields['password']),
+            'role' => $fields['role']
+        ]);
+
+        $token = $user->createToken('myapptoken')->plainTextToken;
+
+        $response = [
+            'user' => $user,
+            'token' => $token
+        ];
+
+        return response($response, 201);
     }
 
-    public function showUser(User $user){
-
-    }
 
     public function deactivateUser(User $user){
         $user->delete();

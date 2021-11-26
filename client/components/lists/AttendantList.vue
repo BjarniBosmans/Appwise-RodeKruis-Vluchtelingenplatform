@@ -1,33 +1,33 @@
 <template>
   <!--lijst-->
   <div>
-  <div class="h-8 border-b-2 m-12">
+  <div class="px-10">
     <section class="">
-      <button class="float-left right-0 text-xl bg-gray-200 text-black rounded p-4
+      <button class="float-left right-0 text-xl bg-gray-secondary text-black rounded p-4
        focus:text-white focus:bg-black hover:text-white hover:bg-black" @click="tableSwitch=false" autofocus>{{ $t('Refugees')}}</button>
-      <button class="float-left left-0 text-xl bg-gray-200 text-black rounded p-4
+      <button class="float-left left-0 text-xl bg-gray-secondary text-black rounded p-4
       focus:text-white focus:bg-black hover:text-white hover:bg-black" @click="tableSwitch=true">{{ $t('Cards')}}</button>
-      <button class="float-right text-xl bg-gray-200 text-black rounded p-4 justify-center items-center
+      <button class="float-right text-xl bg-gray-secondary text-black rounded p-4 justify-center items-center
       focus:text-white focus:bg-black hover:text-white hover:bg-black flex w-1/4 h-16 overflow-clip" @click="showRegistration=!showRegistration">+{{ $t('Add')}}</button>
     </section>
-    <br><br><br>
+    <br>
 
     <!-- refugees -->
-    <div class="bg-gray-100 grid grid-cols-3 md:grid-cols-4 pb-8 justify-center items-center" v-if="!tableSwitch">
-      <div class="bg-gray-200 pr-8 pl-8 pt-6 pb-8 text-2xl truncate flex items-center">
+    <div class="bg-gray-primary grid grid-cols-3 md:grid-cols-4 justify-center items-center" v-if="!tableSwitch">
+      <div class="bg-gray-secondary pr-8 pl-8 pt-6 pb-8 text-2xl truncate flex items-center">
         {{ $t('Full name')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
       </div>
-      <div class="bg-gray-200 pr-8 pl-8 pt-6 pb-8 text-2xl truncate flex items-center">
+      <div class="bg-gray-secondary pr-8 pl-8 pt-6 pb-8 text-2xl truncate flex items-center">
         {{ $t('Completed ticks')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
       </div>
-      <div class="bg-gray-200 pr-8 pl-8 pt-6 pb-8 text-2xl truncate flex items-center">
+      <div class="bg-gray-secondary pr-8 pl-8 pt-6 pb-8 text-2xl truncate flex items-center">
         {{ $t('Country of origin')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
       </div>
-      <div class="bg-gray-200 pr-8 pl-8 pt-6 pb-8 text-2xl truncate flex items-center hidden md:block">
+      <div class="bg-gray-secondary pr-8 pl-8 pt-6 pb-8 text-2xl truncate flex items-center hidden md:block">
         {{ $t('Unique code')}}
       </div>
       </div>
-      <div  v-for="refugee in refugees" class="bg-gray-100 grid grid-cols-3 md:grid-cols-4 pb-8 justify-center items-center" v-if="!tableSwitch">
+      <div  v-for="refugee in refugees" class="bg-gray-primary grid grid-cols-3 md:grid-cols-4  justify-center items-center" v-if="!tableSwitch">
         <div class="column pr-8 pl-8 pt-6 pb-8 text-2xl truncate flex items-center" @click="">
         {{ refugee.firstname }} {{ refugee.lastname }}
         </div>

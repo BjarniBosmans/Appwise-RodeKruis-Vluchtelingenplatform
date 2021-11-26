@@ -45,6 +45,7 @@ export default {
   i18n: {
     locales: ['en', 'fr', 'de', 'nl'],
     defaultLocale: 'en',
+    skipSettingLocaleOnNavigate: true,
     vueI18n: {
       fallbackLocale: 'en',
       messages: {
@@ -78,7 +79,11 @@ export default {
           "Attendants": "Attendants",
           "Refugee": "Refugee",
           "Add refugee": "Add refugee",
-          "Add attendant": "Add attendant"
+          "Add attendant": "Add attendant",
+          "Ticks": "Ticks",
+          "Max ticks": "Maximum ticks",
+          "Kind": "Kind",
+          "Reward": "Reward"
         },
         fr: {
           "Welcome": "Bienvenue",
@@ -110,7 +115,11 @@ export default {
           "Attendants": "Préposés",
           "Refugee": "Réfugié",
           "Add refugee": "Ajouter réfugié",
-          "Add attendant": "Ajouter préposé"
+          "Add attendant": "Ajouter préposé",
+          "Ticks": "Coches",
+          "Max ticks": "Maximum Coches",
+          "Kind": "Type",
+          "Reward": "Récompense"
 
         },
         de: {
@@ -143,7 +152,11 @@ export default {
           "Attendants": "Begleiters",
           "Refugee": "Flüchtling",
           "Add refugee": "Flüchtling hinzufügen",
-          "Add attendant": "Begleiter hinzufügen"
+          "Add attendant": "Begleiter hinzufügen",
+          "Ticks": "Zecken",
+          "Max ticks": "Maximum zecken",
+          "Kind": "Nett",
+          "Reward": "Belohnen"
         },
         nl:{
           "Welcome": "Welkom",
@@ -175,7 +188,11 @@ export default {
           "Attendants": "Begeleiders",
           "Refugee": "Vluchteling",
           "Add refugee": "Toevoegen vluchteling",
-          "Add attendant": "Toevoegen begeleider"
+          "Add attendant": "Toevoegen begeleider",
+          "Ticks": "Vinkjes",
+          "Max ticks": "Maximum vinkjes",
+          "Kind": "Soort",
+          "Reward": "Beloning"
         }
       }
     }
@@ -191,13 +208,16 @@ export default {
       strategies: {
         'laravelSanctum': {
           provider: 'laravel/sanctum',
-          url: 'https://localhost:8000',
+          url: 'http://localhost:8000',
           endpoints: {
             login: {
-              url: '/login'
+              url: '/api/login'
+            },
+            loginRefugee:{
+              url:'/api/loginRefugee'
             },
             logout: {
-              url: '/logout'
+              url: '/api/logout'
             },
             refugees: {
               url: '/refugees'
@@ -210,9 +230,26 @@ export default {
             },
             addAttendant: {
               url: '/attendants/add'
+            },
+            cards: {
+              url: '/cards'
+            },
+            addCard: {
+              url: '/cards/add'
+            },
+            user: {
+              url: '/api/user'
             }
           },
-
+          user: {
+            property: false
+          },
+        redirect:{
+            login: '/',
+            loginRefugee: '/',
+            logout: '/login',
+            home: '/'
+        }
         },
       }
     },

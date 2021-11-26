@@ -8,6 +8,11 @@
   src: url('assets/fonts/PlusJakartaSans-Bold.ttf') format('truetype');
   font-weight: bold;
 }
+@font-face {
+  font-family: 'Jakarta Sans';
+  src: url('assets/fonts/PlusJakartaSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+}
 
 body{
   font-family: "Jakarta Sans";

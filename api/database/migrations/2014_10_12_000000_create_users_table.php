@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->integer('total_ticks')->nullable();
             $table->string('country_of_origin')->nullable();
             $table->string('picture')->nullable();
-            $table->integer('Cards')->nullable();
+            $table->integer('cards')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -34,6 +34,10 @@ class CreateUsersTable extends Migration
             $table->string('kind');
             $table->integer('refugee_id')->unique();
             $table->integer('ticks')->default(0);
+            $table->integer('max_ticks');
+            $table->string('reward')->unique();
+            $table->boolean('completed')->default(false);
+            $table->boolean('reward_delivered')->default(false);
             $table->timestamps();
         });
     }

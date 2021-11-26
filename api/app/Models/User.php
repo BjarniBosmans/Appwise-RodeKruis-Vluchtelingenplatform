@@ -25,7 +25,7 @@ class User extends Authenticatable
         'password',
         'country_of_origin',
         'unique_code',
-        'Cards'
+        'cards'
     ];
 
     /**

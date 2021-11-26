@@ -5,7 +5,7 @@
       <div class="p-8">
         <div class="flex justify-center items-center">
           <h1 class="text-5xl">
-      <span style="color: red">
+      <span class="text-accent-secondary">
        {{ $t('Add')}}
       </span>
             {{ $t('refugee')}}
@@ -14,34 +14,34 @@
       </div>
       <div class="p-8">
         <div class="justify-center">
-          <section class="bg-gray-200 rounded p-4 w-5/12 float-left">
+          <section class="bg-gray-secondary rounded p-4 w-5/12 float-left">
             <label class="text-2xl">{{ $t('Firstname')}}</label>
             <br>
-            <input class="bg-gray-200 rounded w-full text-2xl p-2"  v-model="form.firstname" id="firstname-input"/>
+            <input class="bg-gray-secondary rounded w-full text-2xl p-2"  v-model="form.firstname" id="firstname-input"/>
           </section>
-          <section class="bg-gray-200 rounded p-4 w-5/12  float-right">
+          <section class="bg-gray-secondary rounded p-4 w-5/12  float-right">
             <label class="text-2xl">{{ $t('Lastname')}}</label>
             <br>
-            <input class="bg-gray-200 rounded w-full text-2xl p-2"  v-model="form.lastname" id="lastname-input"/>
+            <input class="bg-gray-secondary rounded w-full text-2xl p-2"  v-model="form.lastname" id="lastname-input"/>
           </section>
         </div>
         <br><br><br><br><br>
-        <section class="bg-gray-200 rounded p-4 w-full ">
+        <section class="bg-gray-secondary rounded p-4 w-full ">
           <label class="text-2xl">E-mail</label>
           <br>
-          <input class="bg-gray-200 rounded text-2xl w-full p-2"  v-model="form.email" id="email-input"/>
+          <input class="bg-gray-secondary rounded text-2xl w-full p-2"  v-model="form.email" id="email-input"/>
         </section>
         <br>
-        <section class="bg-gray-200 rounded p-4 w-full ">
+        <section class="bg-gray-secondary rounded p-4 w-full ">
           <label class="text-2xl">{{ $t('Password')}}</label>
           <br>
-          <input class="bg-gray-200 rounded text-2xl w-full p-2"  v-model="form.password" id="password-input" type="password"/>
+          <input class="bg-gray-secondary rounded text-2xl w-full p-2"  v-model="form.password" id="password-input" type="password"/>
         </section>
         <br>
-        <section class="bg-gray-200 rounded p-4 w-full ">
+        <section class="bg-gray-secondary rounded p-4 w-full ">
           <label class="text-2xl">{{ $t('Country of origin')}}</label>
           <br>
-          <input class="bg-gray-200 rounded text-2xl w-full p-2"  v-model="form.country_of_origin" id="country-input"/>
+          <input class="bg-gray-secondary rounded text-2xl w-full p-2"  v-model="form.country_of_origin" id="country-input"/>
         </section>
       </div>
       <div class="p-4 flex justify-between items-center">

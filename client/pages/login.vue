@@ -1,7 +1,7 @@
 <template>
   <div>
     <language-switcher/>
-<login-page class="bg-gray-300 bg-opacity-50"/>
+<login-page class="bg-gray-tertiary bg-opacity-50"/>
   </div>
 </template>
 
