@@ -2,7 +2,7 @@
   <div>
     <Navigation/>
    <img class="-z-10 absolute w-full h-full" src="@/assets/rode_lijn.svg"/>
-    <div class="max-w-7xl mx-auto">
+    <div class="max-w-7xl mx-auto" >
     <MainPage />
 <!--<AttendantList/> -->
     <AdminList/>
@@ -20,6 +20,6 @@ import AdminList from "../components/lists/AdminList";
 export default{
   name: 'home',
   components: {AdminList, AttendantList, MainPage, Navigation},
-
+  middleware: 'auth',
 }
 </script>

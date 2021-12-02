@@ -83,7 +83,10 @@ export default {
           "Ticks": "Ticks",
           "Max ticks": "Maximum ticks",
           "Kind": "Kind",
-          "Reward": "Reward"
+          "Reward": "Reward",
+          "Please sign in.": "Please sign in.",
+          "Forgot password ?": "Forgot password ?",
+          "Forgot code ?": "Forgot code?"
         },
         fr: {
           "Welcome": "Bienvenue",
@@ -119,7 +122,10 @@ export default {
           "Ticks": "Coches",
           "Max ticks": "Maximum Coches",
           "Kind": "Type",
-          "Reward": "Récompense"
+          "Reward": "Récompense",
+          "Please sign in." : "Veuillez vous connecter.",
+          "Forgot password ?": "Mot de passe oublié ?",
+          "Forgot code ?": "Code oublié ?"
 
         },
         de: {
@@ -156,7 +162,10 @@ export default {
           "Ticks": "Zecken",
           "Max ticks": "Maximum zecken",
           "Kind": "Nett",
-          "Reward": "Belohnen"
+          "Reward": "Belohnen",
+          "Please sign in.": "Bitte einloggen.",
+          "Forgot password ?": "Passwort vergessen ?",
+          "Forgot code ?": "Code vergessen ?"
         },
         nl:{
           "Welcome": "Welkom",
@@ -192,7 +201,10 @@ export default {
           "Ticks": "Vinkjes",
           "Max ticks": "Maximum vinkjes",
           "Kind": "Soort",
-          "Reward": "Beloning"
+          "Reward": "Beloning",
+          "Please sign in." : "Log in alstublieft.",
+          "Forgot password ?": "Wachtwoord vergeten ?",
+          "Forgot code ?": "Code vergeten ?"
         }
       }
     }
@@ -245,10 +257,9 @@ export default {
             property: false
           },
         redirect:{
-            login: '/',
-            loginRefugee: '/',
-            logout: '/login',
-            home: '/'
+        login: '/',
+        loginRefugee: '/'
+
         }
         },
       }

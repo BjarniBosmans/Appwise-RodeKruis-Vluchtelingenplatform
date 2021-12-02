@@ -33,20 +33,14 @@
         </section>
         <br>
         <section class="bg-gray-secondary rounded p-4 w-full ">
-          <label class="text-2xl">{{ $t('Password')}}</label>
-          <br>
-          <input class="bg-gray-secondary rounded text-2xl w-full p-2"  v-model="form.password" id="password-input" type="password"/>
-        </section>
-        <br>
-        <section class="bg-gray-secondary rounded p-4 w-full ">
           <label class="text-2xl">{{ $t('Country of origin')}}</label>
           <br>
           <input class="bg-gray-secondary rounded text-2xl w-full p-2"  v-model="form.country_of_origin" id="country-input"/>
         </section>
       </div>
       <div class="p-4 flex justify-between items-center">
-        <button class="text-3xl rounded p-2 border-gray-300 border-2" @click="$emit('closeReg')">{{ $t('Back')}}</button>
-        <button class="text-3xl bg-black text-white rounded p-2 border-gray-300 border-2" type="submit" @click="showRegResult=true">{{ $t('Add')}}</button>
+        <Button class="text-3xl" @click="$emit('closeReg')">{{ $t('Back')}}</Button>
+        <Button class="text-3xl" type="submit" @click="showRegResult=true">{{ $t('Add')}}</Button>
       </div>
     </div>
    </form>
@@ -56,9 +50,11 @@
 
 <script>
 import RefugeeRegistrationConfirm from "../modals/RefugeeRegistrationConfirm";
+import Button from "../util/Button";
 export default {
   name: "RefugeeRegistration",
   components:{
+    Button,
     RefugeeRegistrationConfirm
   },
   middleware: 'auth',
@@ -69,7 +65,6 @@ export default {
       lastname: '',
       email: '',
       role: 'refugee',
-      password: '',
       country_of_origin: '',
     }
     }),

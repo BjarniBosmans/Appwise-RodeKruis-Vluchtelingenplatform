@@ -14,6 +14,7 @@ module.exports = {
         'accent-primary': '#FF0000',
         'accent-secondary': '#0029E2',
         'dark-primary': '#2D2D2D',
+        'gray-dark': '#ECEDED'
       },
       backgroundColor:{
         'gray-primary': '#F8F9FA',

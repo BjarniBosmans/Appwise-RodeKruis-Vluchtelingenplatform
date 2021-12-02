@@ -40,8 +40,8 @@
         <br>
       </div>
       <div class="p-4 flex justify-between items-center">
-        <button class="text-3xl rounded p-2 border-gray-300 border-2" @click="$emit('closeRegAttendant')">{{ $t('Back')}}</button>
-        <button class="text-3xl bg-black text-white rounded p-2 border-gray-300 border-2" @click="showRegResult=true">{{ $t('Add')}}</button>
+        <Button class="text-3xl" @click="$emit('closeRegAttendant')">{{ $t('Back')}}</Button>
+        <Button class="text-3xl " @click="showRegResult=true">{{ $t('Add')}}</Button>
       </div>
     </div>
     </form>
@@ -51,9 +51,10 @@
 
 <script>
 import AttendantRegistrationConfirm from "./AttendantRegistrationConfirm";
+import Button from "../util/Button";
 export default {
   name: "AttendantRegistration",
-  components: {AttendantRegistrationConfirm},
+  components: {Button, AttendantRegistrationConfirm},
   middleware: 'auth',
   data:() => ({
     showRegResult: false,

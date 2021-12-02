@@ -1,7 +1,13 @@
 <template>
   <div>
-<language-switcher/>
-<LoginPageBeheer/>
+  <div class="grid grid-cols-1 h-screen md:grid-cols-2">
+    <section class="h-full flex flex-col justify-center items-center">
+      <LoginPageBeheer class="h-full"/>
+    </section>
+    <section class="h-full flex flex-col hidden md:block">
+    <img class="object-cover h-full" src="@/assets/rodekruisimg.png"/>
+    </section>
+  </div>
   </div>
 </template>
 

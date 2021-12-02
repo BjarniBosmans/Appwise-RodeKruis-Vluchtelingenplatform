@@ -22,19 +22,19 @@ class UserController extends Controller
             'firstname' => 'required|string',
             'lastname' => 'required|string',
             'email' => 'required|string|unique:users,email',
-            'password' => 'required|string',
             'role' => 'required|string',
             'country_of_origin' => 'required|string',
         ]);
-
+        $unique_code= $this->generateUniqueCode();
         $user= User::create([
         'firstname' => $fields['firstname'],
         'lastname' => $fields['lastname'],
         'email' => $fields['email'],
-        'password' => bcrypt($fields['password']),
+        'unique_code' => $unique_code,
+        'password' => bcrypt($unique_code),
         'role' => $fields['role'],
         'country_of_origin' => $fields['country_of_origin'],
-        'unique_code' => $this->generateUniqueCode()
+
         ]);
 
         $token = $user->createToken('myapptoken')->plainTextToken;

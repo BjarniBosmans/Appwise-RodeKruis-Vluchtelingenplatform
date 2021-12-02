@@ -16,7 +16,7 @@
           {{ $t('Add')}}
         </Button>
         <Button v-if="showAttendants" class=" w-full sm:w-auto justify-center" @click="showRegistrationAttendant=true">{{ $t('Add')}}</Button>
-        <Button v-if="showCards" class=" w-full sm:w-auto justify-center">{{ $t('Add')}}</Button>
+        <Button v-if="showCards" class=" w-full sm:w-auto justify-center" @click="showAddnewCard=true">{{ $t('Add')}}</Button>
         </div>
       </div>
 <br>
@@ -128,8 +128,9 @@
       </div>
       <AttendantRegistration class="bg-black bg-opacity-75" v-if="showRegistrationAttendant" @closeRegAttendant="showRegistrationAttendant=false"/>
       <RefugeeRegistration class="bg-black bg-opacity-75" v-if="showRegistration" @closeReg="showRegistration=false"/>
-      <RefugeeDrawer v-if="toggleRefugeeProfile"/>
-      <AttendantDrawer v-if="toggleAttendantProfile"/>
+      <AddCard class="bg-black bg-opacity-75" v-if="showAddnewCard" @closeNewCard="showAddnewCard=false"/>
+      <RefugeeDrawer class="bg-black bg-opacity-75" v-if="toggleRefugeeProfile"/>
+      <AttendantDrawer class="bg-black bg-opacity-75" v-if="toggleAttendantProfile"/>
     </div>
   </div>
 </template>
@@ -141,9 +142,10 @@ import RefugeeDrawer from "../drawers/RefugeeDrawer";
 import AttendantDrawer from "../drawers/AttendantDrawer";
 import Button from "../util/Button";
 import ChevronRight from "../icons/chevron-down";
+import AddCard from "../modals/AddCard";
 export default {
   name: "AdminList",
-  components: {ChevronRight, Button, AttendantDrawer, RefugeeDrawer, AttendantRegistration, RefugeeRegistration},
+  components: {AddCard, ChevronRight, Button, AttendantDrawer, RefugeeDrawer, AttendantRegistration, RefugeeRegistration},
   middleware: 'auth',
   data:() => ({
     refugees: [],
@@ -154,8 +156,10 @@ export default {
     showCards:false,
     showRegistration: false,
     showRegistrationAttendant:false,
+    showAddnewCard: false,
     toggleRefugeeProfile: false,
-    toggleAttendantProfile: false
+    toggleAttendantProfile: false,
+    toggleCardDetail: false
   }),
 mounted() {
   this.getRefugees()

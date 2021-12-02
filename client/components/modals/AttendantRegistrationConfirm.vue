@@ -5,15 +5,17 @@
         <img class="w-full h-80 p-4 justify-center box-content" src="@/assets/account_added.svg"/>
         <p class=" text-3xl"><span class="text-accent-secondary">Firstname Name</span> {{ $t('is added')}}.</p>
         <br>
-        <button class="bg-black text-white justify-end text-2xl p-4" @click="$emit('closeRegConfirmAttendant')">{{ $t('Continue')}}</button>
+        <Button class="justify-end text-2xl" @click="$emit('closeRegConfirmAttendant')">{{ $t('Continue')}}</Button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Button from "../util/Button";
 export default {
   name: "AttendantRegistrationConfirm",
+  components: {Button},
   data:() => ({
     showRegResult: true,
   })
