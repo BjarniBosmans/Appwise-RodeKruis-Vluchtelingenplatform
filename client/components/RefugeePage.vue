@@ -1,7 +1,7 @@
 <template>
 <div>
-  <h1 class="text-5xl font-medium text-dark-primary">{{ $auth.user.firstname }} {{ $auth.user.lastname }}</h1>
-  <p>{{$t('Reward')}} {{$t('card')}}</p>
+  <h1 class="text-5xl font-medium text-dark-primary p-2">{{ $auth.user.firstname }} {{ $auth.user.lastname }}</h1>
+  <p class="text-2xl text-dark-primary p-4">{{$t('Reward')}} {{$t('card')}}</p>
   <br>
   <div class="grid grid-cols-1 md:grid-cols-2">
   <div v-for="card in cards">
@@ -11,10 +11,9 @@
   </div>
   </div>
   </div>
-  <DetailCard v-if="toggleCardDetail"/>
+  <DetailCard v-if="selectedCardDetail"/>
 </div>
 </template>
-
 <script>
 import DetailCard from "./modals/DetailCard";
 export default {
@@ -23,7 +22,7 @@ export default {
   middleware:'auth',
   data:() => ({
     cards: [],
-    toggleCardDetail: false
+    selectedCardDetail: false
   }),
   methods:{
     getCards(){

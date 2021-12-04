@@ -2,7 +2,7 @@
 <div class="fixed justify-center items-center inset-0 z-50 flex">
   <form @submit.prevent="addCard">
 <div class="flex flex-col max-w-5xl rounded-lg shadow-lg bg-white">
-<div class="p-6">
+<div class="p-8">
   <div class="flex justify-center items-center">
     <h1 class="text-5xl">
       <span class="text-accent-secondary">
@@ -13,60 +13,68 @@
   </div>
 </div>
   <div class="p-8">
-   <div class="justify-center">
-     <section class="w-full p-4">
+   <div>
+     <div class="w-full p-2">
+       <div class="flex justify-between">
        <label class="text-2xl p-2">
-         {{ $t('Kind')}}
+         {{ $t('Type')}}
        </label>
+       <button class="px-6 rounded-lg bg-gray-secondary text-dark-primary flex items-center
+  hover:bg-dark-primary hover:text-white duration-200 w-2 justify-center text-2xl" type="button" @click="showAddnewType=true">+</button>
+       </div>
        <br>
-       <input class="bg-gray-secondary rounded w-full text-2xl p-2" v-model="form.kind" id="kind-input"/>
-     </section>
-     <br>
-     <section class="w-full p-4">
+       <select v-model="form.kind" class="text-2xl p-2 rounded bg-gray-secondary w-full">
+         <option class="text-2xl p-2 rounded" :value="type.reward" v-for="type in types">{{type.kind}}</option>
+       </select>
+       <br><br>
        <label class="text-2xl p-2">
          {{ $t('Reward')}}
        </label>
-       <br>
-       <input class="bg-gray-secondary rounded w-full text-2xl p-2" v-model="form.reward" id="reward-input"/>
-     </section>
+       <br><br>
+       <div class="w-full bg-gray-secondary p-2 rounded">
+       <span class="text-2xl" v-model="form.reward" id="reward-input" >{{form.kind}}</span>
+       </div>
      <br>
-     <section class="w-full p-4">
        <label class="text-2xl p-2">
          {{ $t('Max ticks')}}
        </label>
        <br>
        <input class="bg-gray-secondary rounded w-full text-2xl p-2" v-model="form.max_ticks" id="max_ticks-input"/>
-     </section>
+     </div>
      <br>
-     <section class="w-full p-4">
-       <label class="text-2xl">
+     <div class="w-full px-4">
+       <label class="text-2xl w-full">
          {{ $t('Refugee')}}
        </label>
        <br>
-       <select class="text-2xl p-2 rounded bg-gray-secondary" >
-         <option class="text-2xl p-2 rounded" v-model="form.refugee_id" v-for="refugee in refugees">{{ refugee.firstname }}  {{ refugee.lastname}} </option>
+       <select class="text-2xl p-2 rounded bg-gray-secondary w-full" v-model="form.refugee_id">
+         <option class="text-2xl rounded"  v-for="refugee in refugees">{{ refugee.firstname }} {{ refugee.lastname}} </option>
        </select>
-     </section>
+     </div>
      <br><br>
    </div>
     <div class="justify-between flex items-center">
     <Button class="text-3xl" @click="$emit('closeNewCard')">{{ $t('Back')}}</Button>
-    <Button class="text-3xl" >{{ $t('Add')}}</Button>
+    <Button class="text-3xl">{{ $t('Add')}}</Button>
     </div>
   </div>
 </div>
   </form>
+  <AddCardType class="bg-black bg-opacity-75" v-if="showAddnewType" @closeNewType="showAddnewType=false"/>
 </div>
 </template>
 
 <script>
 import Button from "../util/Button";
+import AddCardType from "./AddCardType";
 export default {
   name: "AddCard",
-  components: {Button},
+  components: {AddCardType, Button},
   middleware: 'auth',
   data:() => ({
     refugees: [],
+    types: [],
+    showAddnewType: false,
     form: {
       kind: '',
       reward:'',
@@ -76,6 +84,7 @@ export default {
   }),
   mounted() {
     this.getRefugees()
+    this.getTypes()
   },
   methods:{
     getRefugees(){
@@ -89,6 +98,13 @@ export default {
       this.$axios.post('/api/cards/add', this.form)
         .then(response => console.log(response))
         .catch(error => console.log(error));
+    },
+    getTypes(){
+      this.$axios.$get('/api/types')
+        .then((resp) => {
+          this.types= resp.types
+        })
+        .catch((err) => console.log(err))
     }
   }
 }

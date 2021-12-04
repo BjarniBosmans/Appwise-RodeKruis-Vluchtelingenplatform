@@ -1,3 +1,5 @@
+import * as url from "url";
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -59,6 +61,7 @@ export default {
           "Refugees": "Refugees",
           "refugee": "refugee",
           "Cards": "Cards",
+          "card": "card",
           "Full name": "Full name",
           "Completed ticks": "Completed ticks",
           "Country of origin": "Country of origin",
@@ -82,11 +85,12 @@ export default {
           "Add attendant": "Add attendant",
           "Ticks": "Ticks",
           "Max ticks": "Maximum ticks",
-          "Kind": "Kind",
+          "Type": "Type",
           "Reward": "Reward",
           "Please sign in.": "Please sign in.",
           "Forgot password ?": "Forgot password ?",
-          "Forgot code ?": "Forgot code?"
+          "Forgot code ?": "Forgot code?",
+          "Assigned refugees": "Assigned refugees"
         },
         fr: {
           "Welcome": "Bienvenue",
@@ -98,6 +102,7 @@ export default {
           "Refugees": "Réfugiés",
           "refugee": "réfugié",
           "Cards": "Cartes",
+          "card": "carte",
           "Full name": "Nom et prénom",
           "Completed ticks": "Coches terminées",
           "Country of origin": "Pays d'origine",
@@ -121,12 +126,12 @@ export default {
           "Add attendant": "Ajouter préposé",
           "Ticks": "Coches",
           "Max ticks": "Maximum Coches",
-          "Kind": "Type",
+          "Type": "Type",
           "Reward": "Récompense",
           "Please sign in." : "Veuillez vous connecter.",
           "Forgot password ?": "Mot de passe oublié ?",
-          "Forgot code ?": "Code oublié ?"
-
+          "Forgot code ?": "Code oublié ?",
+          "Assigned refugees": "Réfugiés assignés"
         },
         de: {
           "Welcome": "Willkommen",
@@ -138,6 +143,7 @@ export default {
           "Refugees": " Flüchtlinge",
           "refugee": "flüchtling",
           "Cards": "Karten",
+          "card": "karte",
           "Full name": "Vollständiger Name",
           "Completed ticks": "Abgeschlossene zecken",
           "Country of origin": "Ursprungsland",
@@ -161,11 +167,12 @@ export default {
           "Add attendant": "Begleiter hinzufügen",
           "Ticks": "Zecken",
           "Max ticks": "Maximum zecken",
-          "Kind": "Nett",
+          "Type": "Nett",
           "Reward": "Belohnen",
           "Please sign in.": "Bitte einloggen.",
           "Forgot password ?": "Passwort vergessen ?",
-          "Forgot code ?": "Code vergessen ?"
+          "Forgot code ?": "Code vergessen ?",
+          "Assigned refugees": "Zugewiesene flüchtlinge"
         },
         nl:{
           "Welcome": "Welkom",
@@ -177,6 +184,7 @@ export default {
           "Refugees": " Vluchtelingen",
           "refugee": "vluchteling",
           "Cards": "Kaarten",
+          "card": "kaart",
           "Full name": "Volledige naam",
           "Completed ticks": "Voltooide vinkjes",
           "Country of origin": "Land van herkomst",
@@ -200,11 +208,12 @@ export default {
           "Add attendant": "Toevoegen begeleider",
           "Ticks": "Vinkjes",
           "Max ticks": "Maximum vinkjes",
-          "Kind": "Soort",
+          "Type": "Soort",
           "Reward": "Beloning",
           "Please sign in." : "Log in alstublieft.",
           "Forgot password ?": "Wachtwoord vergeten ?",
-          "Forgot code ?": "Code vergeten ?"
+          "Forgot code ?": "Code vergeten ?",
+          "Assigned refugees": "Toegewezen vluchtelingen"
         }
       }
     }
@@ -249,8 +258,20 @@ export default {
             addCard: {
               url: '/cards/add'
             },
+            types: {
+              url: '/types'
+            },
+            addType:{
+              url: '/types/add'
+            },
             user: {
               url: '/api/user'
+            },
+            deactivateRefugee: {
+             url: '/api/deactivateUser'
+            },
+            deactivateAttendant: {
+              url: '/api/deactivateUser'
             }
           },
           user: {

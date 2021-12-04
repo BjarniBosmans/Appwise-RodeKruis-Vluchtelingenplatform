@@ -44,7 +44,7 @@
       </div>
     </div>
    </form>
-    <RefugeeRegistrationConfirm v-if="showRegResult" @closeRegConfirm="showRegResult=false"/>
+    <RefugeeRegistrationConfirm :refugee="created_user" v-if="created_user" @closeRegConfirm="created_user=null"/>
   </div>
 </template>
 
@@ -66,13 +66,16 @@ export default {
       email: '',
       role: 'refugee',
       country_of_origin: '',
-    }
+    },
+    created_user:null
     }),
 
   methods:{
     async addRefugee(){
       await this.$axios.post('api/refugees/add', this.form)
-      .then(response => console.log(response))
+      .then(response => {
+        this.created_user= response.data.user
+      })
       .catch(error => console.log(error));
     }
   }

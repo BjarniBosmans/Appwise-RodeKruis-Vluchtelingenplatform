@@ -45,7 +45,7 @@
       </div>
     </div>
     </form>
-    <AttendantRegistrationConfirm v-if="showRegResult" @closeRegConfirmAttendant="showRegResult=false"/>
+    <AttendantRegistrationConfirm :attendant="created_user" v-if="created_user" @closeRegConfirmAttendant="created_user=null"/>
   </div>
 </template>
 
@@ -64,12 +64,15 @@ export default {
       email: '',
       role: 'attendant',
       password: ''
-    }
+    },
+    created_user:null
   }),
   methods:{
     async addAttendant(){
       await this.$axios.post('api/attendants/add', this.form)
-        .then(response => console.log(response))
+        .then(response => {
+          this.created_user= response.data.user
+        })
         .catch(error => console.log(error));
     }
   }

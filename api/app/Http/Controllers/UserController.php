@@ -76,9 +76,7 @@ class UserController extends Controller
 
 
     public function deactivateUser(User $user){
-        $user->delete();
-        return redirect()->to('/');
-
+       return $user->delete();
     }
 
     public function generateUniqueCode(){

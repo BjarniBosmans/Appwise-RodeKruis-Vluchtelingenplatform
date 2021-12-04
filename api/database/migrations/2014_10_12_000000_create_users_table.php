@@ -31,13 +31,19 @@ class CreateUsersTable extends Migration
 
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
-            $table->string('kind');
+            $table->string('kind')->unique();
             $table->integer('refugee_id')->unique();
             $table->integer('ticks')->default(0);
             $table->integer('max_ticks');
-            $table->string('reward')->unique();
+            $table->string('reward');
             $table->boolean('completed')->default(false);
             $table->boolean('reward_delivered')->default(false);
+            $table->timestamps();
+        });
+        Schema::create('types', function (Blueprint $table) {
+            $table->id();
+            $table->string('kind')->unique();
+            $table->string('reward');
             $table->timestamps();
         });
     }

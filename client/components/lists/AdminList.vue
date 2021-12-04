@@ -38,21 +38,21 @@
         </div>
 
         <div class="text-xl truncate flex items-center">
-          {{ $t('Cards')}}
+          {{ $t('Assigned refugees')}}
           <button class="">
             <img class="h-4 w-4" src="@/assets/arrows.svg">
           </button>
         </div>
       </div>
       <div class="bg-gray-primary rounded-b-lg">
-        <div  v-for="attendant in attendants" class="p-4 grid grid-cols-2 md:grid-cols-3 justify-center items-center" v-if="showAttendants">
-          <div class="column text-xl truncate flex items-center hidden md:block" @click="">
+        <div  v-for="attendant in attendants" @click="selectedAttendantProfile=attendant" class="p-4 grid grid-cols-2 md:grid-cols-3 justify-center items-center" v-if="showAttendants">
+          <div class="column text-xl truncate flex items-center hidden md:block" >
             {{ attendant.firstname }} {{ attendant.lastname }}
           </div>
-          <div class="column  text-xl truncate flex items-center" @click="">
+          <div class="column  text-xl truncate flex items-center">
             {{ attendant.email }}
           </div>
-          <div class="column  text-xl truncate flex items-center" @click="">
+          <div class="column  text-xl truncate flex items-center">
             {{ attendant.Cards }}
           </div>
         </div>
@@ -75,17 +75,17 @@
         </div>
       </div>
       <div class="bg-gray-primary rounded-b-lg">
-      <div  v-for="refugee in refugees" class="p-4 bg-gray-primary grid grid-cols-2 md:grid-cols-4  justify-center items-center" v-if="showRefugees">
-        <div class="column text-xl truncate flex items-center" @click="">
+      <div  v-for="refugee in refugees" @click="selectedRefugeeProfile=refugee" class="p-4 bg-gray-primary grid grid-cols-2 md:grid-cols-4  justify-center items-center" v-if="showRefugees">
+        <div class="column text-xl truncate flex items-center">
           {{ refugee.firstname }} {{ refugee.lastname }}
         </div>
-        <div class="column text-xl truncate flex items-center hidden md:block" @click="">
+        <div class="column text-xl truncate flex items-center hidden md:block">
           {{ refugee.total_ticks }}
         </div>
-        <div class="column text-xl truncate flex items-center" @click="">
+        <div class="column text-xl truncate flex items-center">
           {{ refugee.country_of_origin }}
         </div>
-        <div class="column text-xl truncate flex items-center hidden md:block" @click="">
+        <div class="column text-xl truncate flex items-center hidden md:block">
           {{ refugee.unique_code }}
         </div>
       </div>
@@ -95,7 +95,7 @@
       <!--cards-->
       <div class="p-4 bg-gray-secondary grid grid-col-2 md:grid-cols-4 justify-center items-center" v-if="showCards">
         <div class=" text-xl truncate flex items-center">
-          {{ $t('Kind')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
+          {{ $t('Type')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
         </div>
         <div class=" text-xl truncate flex items-center hidden md:block">
           {{ $t('Reward')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
@@ -108,7 +108,7 @@
         </div>
       </div>
       <div class="bg-gray-primary rounded-b-lg">
-      <div v-for="card in cards" class="p-4 bg-gray-primary grid grid-cols-2 md:grid-cols-4 justify-center items-center" v-if="showCards">
+      <div v-for="card in cards" @click="selectedCardDetail=card" class="p-4 bg-gray-primary grid grid-cols-2 md:grid-cols-4 justify-center items-center" v-if="showCards">
         <div  class="column text-xl truncate flex items-center">
           {{card.kind}}
         </div>
@@ -129,8 +129,9 @@
       <AttendantRegistration class="bg-black bg-opacity-75" v-if="showRegistrationAttendant" @closeRegAttendant="showRegistrationAttendant=false"/>
       <RefugeeRegistration class="bg-black bg-opacity-75" v-if="showRegistration" @closeReg="showRegistration=false"/>
       <AddCard class="bg-black bg-opacity-75" v-if="showAddnewCard" @closeNewCard="showAddnewCard=false"/>
-      <RefugeeDrawer class="bg-black bg-opacity-75" v-if="toggleRefugeeProfile"/>
-      <AttendantDrawer class="bg-black bg-opacity-75" v-if="toggleAttendantProfile"/>
+      <RefugeeDrawer :refugee="selectedRefugeeProfile"  class="bg-black bg-opacity-75" v-if="selectedRefugeeProfile" @closeRefugeeProfile="selectedRefugeeProfile=null"/>
+      <AttendantDrawer :attendant="selectedAttendantProfile" class="bg-black bg-opacity-75" v-if="selectedAttendantProfile" @closeAttendantProfile="selectedAttendantProfile=null"/>
+      <DetailCard :card="selectedCardDetail" class="bg-black bg-opacity-75" v-if="selectedCardDetail" @closeCardDetail="selectedCardDetail=null"/>
     </div>
   </div>
 </template>
@@ -143,9 +144,12 @@ import AttendantDrawer from "../drawers/AttendantDrawer";
 import Button from "../util/Button";
 import ChevronRight from "../icons/chevron-down";
 import AddCard from "../modals/AddCard";
+import DetailCard from "../modals/DetailCard";
 export default {
   name: "AdminList",
-  components: {AddCard, ChevronRight, Button, AttendantDrawer, RefugeeDrawer, AttendantRegistration, RefugeeRegistration},
+  components: {
+    DetailCard,
+    AddCard, ChevronRight, Button, AttendantDrawer, RefugeeDrawer, AttendantRegistration, RefugeeRegistration},
   middleware: 'auth',
   data:() => ({
     refugees: [],
@@ -157,9 +161,9 @@ export default {
     showRegistration: false,
     showRegistrationAttendant:false,
     showAddnewCard: false,
-    toggleRefugeeProfile: false,
-    toggleAttendantProfile: false,
-    toggleCardDetail: false
+    selectedRefugeeProfile: null,
+    selectedAttendantProfile: null,
+    selectedCardDetail: null
   }),
 mounted() {
   this.getRefugees()
