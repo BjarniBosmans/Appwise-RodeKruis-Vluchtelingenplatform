@@ -50,7 +50,7 @@ export default {
   },
   methods:{
   deactivateAttendant(){
-    this.$axios.post('/api/deactivateUser', this.attendant)
+    this.$axios.delete(`/api/deactivateUser/${this.attendant.id}`)
     .then(this.$router.push('/'))
     .catch(error => console.log(error));
   }

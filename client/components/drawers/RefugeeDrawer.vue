@@ -43,7 +43,7 @@ export default {
   },
   methods:{
     deactivateRefugee(){
-      this.$axios.post('/api/deactivateUser', this.refugee)
+      this.$axios.delete(`/api/deactivateUser/${this.refugee.id}`)
         .then(response => console.log(response))
         .catch(error => console.log(error));
     }

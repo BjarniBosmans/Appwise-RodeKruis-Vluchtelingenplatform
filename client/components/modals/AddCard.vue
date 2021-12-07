@@ -23,8 +23,8 @@
   hover:bg-dark-primary hover:text-white duration-200 w-2 justify-center text-2xl" type="button" @click="showAddnewType=true">+</button>
        </div>
        <br>
-       <select v-model="form.kind" class="text-2xl p-2 rounded bg-gray-secondary w-full">
-         <option class="text-2xl p-2 rounded" :value="type.reward" v-for="type in types">{{type.kind}}</option>
+       <select v-model="form.kind" class="text-2xl p-2 rounded bg-gray-secondary w-full" id="type_input">
+         <option class="text-2xl p-2 rounded" v-for="type in types" :key="type.kind" :value="type">{{type.kind}}</option>
        </select>
        <br><br>
        <label class="text-2xl p-2">
@@ -32,7 +32,8 @@
        </label>
        <br><br>
        <div class="w-full bg-gray-secondary p-2 rounded">
-       <span class="text-2xl" v-model="form.reward" id="reward-input" >{{form.kind}}</span>
+       <input
+         class="text-2xl bg-gray-secondary" v-model="form.reward" id="reward-input" value="type.kind"/>
        </div>
      <br>
        <label class="text-2xl p-2">
@@ -48,7 +49,7 @@
        </label>
        <br>
        <select class="text-2xl p-2 rounded bg-gray-secondary w-full" v-model="form.refugee_id">
-         <option class="text-2xl rounded"  v-for="refugee in refugees">{{ refugee.firstname }} {{ refugee.lastname}} </option>
+         <option class="text-2xl rounded"  v-for="refugee in refugees" :value="refugee.id">{{ refugee.firstname }} {{ refugee.lastname}} </option>
        </select>
      </div>
      <br><br>
@@ -78,6 +79,7 @@ export default {
     form: {
       kind: '',
       reward:'',
+      ticks:'0',
       max_ticks: '',
       refugee_id: ''
     }

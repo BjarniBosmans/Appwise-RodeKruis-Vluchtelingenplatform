@@ -36,7 +36,7 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::get('/types', [\App\Http\Controllers\CardController::class, 'showTypes']);
     Route::post('/types/add', [\App\Http\Controllers\CardController::class, 'addType']);
 
-    Route::post('/deactivateUser', [\App\Http\Controllers\UserController::class, 'deactivateUser']);
+    Route::delete('/deactivateUser/{user}', [\App\Http\Controllers\UserController::class, 'deactivateUser']);
 
     Route::post('/logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout']);
 

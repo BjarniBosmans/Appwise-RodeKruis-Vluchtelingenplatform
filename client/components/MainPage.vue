@@ -7,7 +7,7 @@
           {{ $auth.user.firstname }}
           </span>
         </h1>
-    <p class="text-xl">
+    <p class="text-2xl">
       {{ $t('This is your hub to manage all the people assigned to you, make sure to notify the person in question if something has changed for them.')}}
     </p>
   </section>
