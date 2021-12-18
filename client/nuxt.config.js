@@ -45,9 +45,20 @@ export default {
   ],
 
   i18n: {
-    locales: ['en', 'fr', 'de', 'nl'],
+    locales: [
+      {
+        code:'en'
+      },{
+        code:'fr'
+      },
+      {
+        code:'de'
+      },
+      {
+        code:'nl'
+      }
+    ],
     defaultLocale: 'en',
-    skipSettingLocaleOnNavigate: true,
     vueI18n: {
       fallbackLocale: 'en',
       messages: {
@@ -90,7 +101,11 @@ export default {
           "Please sign in.": "Please sign in.",
           "Forgot password ?": "Forgot password ?",
           "Forgot code ?": "Forgot code?",
-          "Assigned refugees": "Assigned refugees"
+          "Assigned refugees": "Assigned refugees",
+          "Name": "Name",
+          "Tasks": "Tasks",
+          "task": "task",
+          "type": "type"
         },
         fr: {
           "Welcome": "Bienvenue",
@@ -131,7 +146,11 @@ export default {
           "Please sign in." : "Veuillez vous connecter.",
           "Forgot password ?": "Mot de passe oublié ?",
           "Forgot code ?": "Code oublié ?",
-          "Assigned refugees": "Réfugiés assignés"
+          "Assigned refugees": "Réfugiés assignés",
+          "Name": "Nom",
+          "Tasks": "Tâches",
+          "task": "tâche",
+          "type": "type"
         },
         de: {
           "Welcome": "Willkommen",
@@ -172,7 +191,11 @@ export default {
           "Please sign in.": "Bitte einloggen.",
           "Forgot password ?": "Passwort vergessen ?",
           "Forgot code ?": "Code vergessen ?",
-          "Assigned refugees": "Zugewiesene flüchtlinge"
+          "Assigned refugees": "Zugewiesene flüchtlinge",
+          "Name": "Naam",
+          "Tasks": "Aufgaben",
+          "task": "aufgabe",
+          "type": "nett"
         },
         nl:{
           "Welcome": "Welkom",
@@ -213,7 +236,11 @@ export default {
           "Please sign in." : "Log in alstublieft.",
           "Forgot password ?": "Wachtwoord vergeten ?",
           "Forgot code ?": "Code vergeten ?",
-          "Assigned refugees": "Toegewezen vluchtelingen"
+          "Assigned refugees": "Toegewezen vluchtelingen",
+          "Name": "Naam",
+          "Tasks": "Taken",
+          "task": "taak",
+          "type": "type"
         }
       }
     }
@@ -254,6 +281,9 @@ export default {
             },
             cards: {
               url: '/cards'
+            },
+            cardsForRefugee:{
+              url: '/cards/refugee'
             },
             addCard: {
               url: '/cards/add'

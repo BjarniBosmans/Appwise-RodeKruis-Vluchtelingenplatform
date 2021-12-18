@@ -1,6 +1,6 @@
 <template>
   <div class="justify-center relative items-center flex flex-col w-full">
-
+<LanguageSwitcher class="right-0 top-0 "/>
     <img class="absolute object-contain w-40 h-40 top-20 left-1/2 transform -translate-x-1/2" src="@/assets/Flag_of_the_Red_Cross.svg.png">
     <div class="w-full px-16 max-w-2xl">
       <div>
@@ -33,9 +33,10 @@
 
 <script>
 import Button from "./util/Button";
+import LanguageSwitcher from "./util/LanguageSwitcher";
 export default {
   name: "LoginPage",
-  components: {Button},
+  components: {LanguageSwitcher, Button},
   middleware: 'auth',
   data(){
     return{

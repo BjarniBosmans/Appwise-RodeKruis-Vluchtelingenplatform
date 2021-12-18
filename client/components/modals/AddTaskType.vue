@@ -2,7 +2,7 @@
 <div class="fixed justify-center items-center inset-0 z-50 flex">
 <form>
   <div class="flex flex-col max-w-5xl rounded-lg shadow-lg bg-white">
-    <div class="p-4">
+    <div class="px-44 py-8">
       <div class="flex justify-center items-center">
         <h1 class="text-5xl">
       <span class="text-accent-secondary">
@@ -42,7 +42,7 @@
 <script>
 import Button from "../util/Button";
 export default {
-  name: "AddCardType",
+  name: "AddTaskType",
   components: {Button},
   data:() => ({
     form: {
@@ -50,6 +50,7 @@ export default {
       reward:''
     }
   }),
+
   methods:{
     addType(){
       this.$axios.post('/api/types/add', this.form)

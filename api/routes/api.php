@@ -32,7 +32,12 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::post('/attendants/add', [\App\Http\Controllers\UserController::class, 'addAttendant']);
 
     Route::get('/cards', [\App\Http\Controllers\CardController::class, 'showCards']);
+    Route::get('/cards/refugee/{user}' ,[\App\Http\Controllers\CardController::class,'showCardsForRefugee']);
+
     Route::post('/cards/add', [\App\Http\Controllers\CardController::class, 'addCard']);
+
+    Route::post('/cards/tasks/add', [\App\Http\Controllers\CardController::class, 'addTask']);
+
     Route::get('/types', [\App\Http\Controllers\CardController::class, 'showTypes']);
     Route::post('/types/add', [\App\Http\Controllers\CardController::class, 'addType']);
 

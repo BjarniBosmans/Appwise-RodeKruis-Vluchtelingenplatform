@@ -44,7 +44,12 @@ export default {
   methods:{
     deactivateRefugee(){
       this.$axios.delete(`/api/deactivateUser/${this.refugee.id}`)
-        .then(response => console.log(response))
+        .then(() => {
+          this.$emit("delete-refugee", this.refugee)
+        })
+        .then(() => {
+          this.$emit('closeRefugeeProfile')
+        })
         .catch(error => console.log(error));
     }
   },data () {

@@ -67,10 +67,10 @@
         <div class=" text-xl truncate flex items-center hidden md:block">
           {{ $t('Completed ticks')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
         </div>
-        <div class=" text-xl truncate flex items-center">
+        <div class=" text-xl truncate flex items-center hidden md:block">
           {{ $t('Country of origin')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
         </div>
-        <div class="text-xl truncate flex items-center hidden md:block">
+        <div class="text-xl truncate flex items-center ">
           {{ $t('Unique code')}}
         </div>
       </div>
@@ -82,10 +82,10 @@
         <div class="column text-xl truncate flex items-center hidden md:block">
           {{ refugee.total_ticks }}
         </div>
-        <div class="column text-xl truncate flex items-center">
+        <div class="column text-xl truncate flex items-center hidden md:block">
           {{ refugee.country_of_origin }}
         </div>
-        <div class="column text-xl truncate flex items-center hidden md:block">
+        <div class="column text-xl truncate flex items-center ">
           {{ refugee.unique_code }}
         </div>
       </div>
@@ -93,12 +93,9 @@
 
 
       <!--cards-->
-      <div class="p-4 bg-gray-secondary grid grid-col-2 md:grid-cols-4 justify-center items-center" v-if="showCards">
+      <div class="p-4 bg-gray-secondary grid grid-col-2 md:grid-cols-3 justify-center items-center" v-if="showCards">
         <div class=" text-xl truncate flex items-center">
-          {{ $t('Type')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
-        </div>
-        <div class=" text-xl truncate flex items-center hidden md:block">
-          {{ $t('Reward')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
+          {{ $t('Name')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
         </div>
         <div class=" text-xl truncate flex items-center hidden md:block">
           {{ $t('Ticks')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
@@ -108,12 +105,9 @@
         </div>
       </div>
       <div class="bg-gray-primary rounded-b-lg">
-      <div v-for="card in cards" @click="selectedCardDetail=card" class="p-4 bg-gray-primary grid grid-cols-2 md:grid-cols-4 justify-center items-center" v-if="showCards">
+      <div v-for="card in cards" @click="selectedCardDetail=card" class="p-4 bg-gray-primary grid grid-cols-2 md:grid-cols-3 justify-center items-center" v-if="showCards">
         <div  class="column text-xl truncate flex items-center">
-          {{card.kind}}
-        </div>
-        <div class="column text-xl truncate flex items-center hidden md:block">
-          {{card.reward}}
+          {{card.name}}
         </div>
         <div  class="column text-xl truncate flex items-center hidden md:block">
           {{card.ticks}}
@@ -124,13 +118,12 @@
       </div>
       </div>
 
-      <div>
-      </div>
-      <AttendantRegistration class="bg-black bg-opacity-75" v-if="showRegistrationAttendant" @closeRegAttendant="showRegistrationAttendant=false"/>
-      <RefugeeRegistration class="bg-black bg-opacity-75" v-if="showRegistration" @closeReg="showRegistration=false"/>
+
+      <AttendantRegistration class="bg-black bg-opacity-75" v-if="showRegistrationAttendant" @addedAttendant="onAttendantAdded" @closeRegAttendant="showRegistrationAttendant=false"/>
+      <RefugeeRegistration class="bg-black bg-opacity-75" v-if="showRegistration" @addedRefugee="onRefugeeAdded" @closeReg="showRegistration=false"/>
       <AddCard class="bg-black bg-opacity-75" v-if="showAddnewCard" @closeNewCard="showAddnewCard=false"/>
-      <RefugeeDrawer :refugee="selectedRefugeeProfile"  class="bg-black bg-opacity-75" v-if="selectedRefugeeProfile" @closeRefugeeProfile="selectedRefugeeProfile=null"/>
-      <AttendantDrawer :attendant="selectedAttendantProfile" class="bg-black bg-opacity-75" v-if="selectedAttendantProfile" @closeAttendantProfile="selectedAttendantProfile=null"/>
+      <RefugeeDrawer :refugee="selectedRefugeeProfile" @delete-refugee="onRefugeeDelete" class="bg-black bg-opacity-75" v-if="selectedRefugeeProfile" @closeRefugeeProfile="selectedRefugeeProfile=null"/>
+      <AttendantDrawer :attendant="selectedAttendantProfile" @delete-attendant="onAttendantDelete" class="bg-black bg-opacity-75" v-if="selectedAttendantProfile" @closeAttendantProfile="selectedAttendantProfile=null"/>
       <DetailCard :card="selectedCardDetail" class="bg-black bg-opacity-75" v-if="selectedCardDetail" @closeCardDetail="selectedCardDetail=null"/>
     </div>
   </div>
@@ -192,6 +185,20 @@ methods:{
       this.cards= resp.cards
     })
     .catch((err) => console.log(err))
+  },
+  onAttendantAdded(user){
+    this.attendants.push(user)
+  },
+  onAttendantDelete(user){
+    const index= this.attendants.findIndex(userInArray => userInArray.id === user.id)
+    this.attendants.splice(index, 1)
+  },
+  onRefugeeAdded(user){
+  this.refugees.push(user)
+  },
+  onRefugeeDelete(user){
+    const index = this.refugees.findIndex(userInArray => userInArray.id === user.id)
+    this.refugees.splice(index, 1)
   }
 }
 

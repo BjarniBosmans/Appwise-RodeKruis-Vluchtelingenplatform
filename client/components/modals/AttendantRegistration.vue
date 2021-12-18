@@ -2,7 +2,7 @@
   <div class="fixed justify-center items-center inset-0 z-50 flex">
     <form @submit.prevent="addAttendant">
     <div class="flex flex-col max-w-5xl rounded-lg shadow-lg bg-white">
-      <div class="p-8">
+      <div class="px-44 py-8">
         <div class="flex justify-center items-center">
           <h1 class="text-5xl">
       <span class="text-accent-secondary">
@@ -45,7 +45,7 @@
       </div>
     </div>
     </form>
-    <AttendantRegistrationConfirm :attendant="created_user" v-if="created_user" @closeRegConfirmAttendant="created_user=null"/>
+    <AttendantRegistrationConfirm class="bg-black bg-opacity-25" :attendant="created_user" v-if="created_user" @closeRegConfirmAttendant="created_user=null"/>
   </div>
 </template>
 
@@ -72,6 +72,9 @@ export default {
       await this.$axios.post('api/attendants/add', this.form)
         .then(response => {
           this.created_user= response.data.user
+        })
+        .then(() => {
+          this.$emit("addedAttendant", this.created_user)
         })
         .catch(error => console.log(error));
     }

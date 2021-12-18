@@ -44,7 +44,7 @@
       </div>
     </div>
    </form>
-    <RefugeeRegistrationConfirm :refugee="created_user" v-if="created_user" @closeRegConfirm="created_user=null"/>
+    <RefugeeRegistrationConfirm class="bg-black bg-opacity-25" :refugee="created_user" v-if="created_user" @closeRegConfirm="created_user=null"/>
   </div>
 </template>
 
@@ -76,6 +76,9 @@ export default {
       .then(response => {
         this.created_user= response.data.user
       })
+        .then(() => {
+          this.$emit("addedRefugee", this.created_user)
+        })
       .catch(error => console.log(error));
     }
   }

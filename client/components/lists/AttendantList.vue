@@ -85,10 +85,10 @@
 <div/>
   </div>
 
-    <RefugeeRegistration class="bg-black bg-opacity-75" v-if="showRegistration" @closeReg="showRegistration=false"/>
+    <RefugeeRegistration class="bg-black bg-opacity-75" v-if="showRegistration" @addedRefugee="onRefugeeAdded" @closeReg="showRegistration=false"/>
     <AddCard class="bg-black bg-opacity-75" v-if="showAddnewCard" @closeNewCard="showAddnewCard=false"/>
-    <RefugeeDrawer :refugee="selectedRefugeeProfile"  class="bg-black bg-opacity-75" v-if="selectedRefugeeProfile" @closeRefugeeProfile="selectedRefugeeProfile=null"/>
-    <DetailCard />
+    <RefugeeDrawer :refugee="selectedRefugeeProfile" @delete-refugee="onRefugeeDelete"  class="bg-black bg-opacity-75" v-if="selectedRefugeeProfile" @closeRefugeeProfile="selectedRefugeeProfile=null"/>
+    <DetailCard :card="selectedCardDetail" class="bg-black bg-opacity-75" v-if="selectedCardDetail" @closeCardDetail="selectedCardDetail=null"/>
   </div>
 </template>
 
@@ -133,6 +133,13 @@ export default {
           this.cards= resp.cards
         })
         .catch((err) => console.log(err))
+    },
+    onRefugeeAdded(user){
+      this.refugees.push(user)
+    },
+    onRefugeeDelete(user){
+      const index = this.refugees.findIndex(userInArray => userInArray.id === user.id)
+      this.refugees.splice(index, 1)
     }
   }
 }

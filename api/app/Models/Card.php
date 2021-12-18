@@ -2,20 +2,23 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Card extends Authenticatable
+class Card extends Model
 {
-
     protected $fillable=[
-        'kind',
+        'name',
         'refugee_id',
         'ticks',
-        'max_ticks',
-        'reward',
-        'completed',
-        'reward_delivered'
+        'total_ticks'
     ];
 
+    public function refugee(){
+        return $this->belongsTo(User::class);
+}
+    public function tasks(){
+        return $this->hasMany(Task::class);
+    }
 
 }

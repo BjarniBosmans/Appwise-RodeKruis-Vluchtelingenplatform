@@ -50,9 +50,14 @@ export default {
   },
   methods:{
   deactivateAttendant(){
-    this.$axios.delete(`/api/deactivateUser/${this.attendant.id}`)
-    .then(this.$router.push('/'))
-    .catch(error => console.log(error));
+     this.$axios.delete(`/api/deactivateUser/${this.attendant.id}`)
+    .then(() => {
+      this.$emit("delete-attendant", this.attendant)
+     })
+       .then(() => {
+         this.$emit('closeAttendantProfile')
+       })
+     .catch(error => console.log(error));
   }
   },data () {
     return {
