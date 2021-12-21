@@ -1,6 +1,6 @@
 <template>
   <div class="fixed justify-center items-center inset-0 z-50 flex">
-    <form @submit.prevent="">
+    <form @submit.prevent="addTask">
       <div class="flex flex-col max-w-5xl rounded-lg shadow-lg bg-white">
         <div class="px-44 py-8">
           <div class="flex justify-center items-center">
@@ -23,7 +23,7 @@
               </div>
               <br>
               <select v-model="form.kind" class="text-2xl p-2 rounded bg-gray-secondary w-full" id="type_input">
-                <option class="text-2xl p-2 rounded" v-for="type in types" :key="type.kind" :value="type">{{type.kind}}</option>
+                <option class="text-2xl p-2 rounded" v-for="type in types">{{type.kind}}</option>
               </select>
               <br><br>
               <label class="text-2xl p-2">
@@ -32,7 +32,7 @@
               <br><br>
               <div class="w-full bg-gray-secondary p-2 rounded">
                 <input
-                  class="text-2xl bg-gray-secondary w-full" v-model="form.reward" id="reward-input" value="type.kind"/>
+                  class="text-2xl bg-gray-secondary w-full" v-model="form.reward" id="reward-input"/>
               </div>
               <br>
               <label class="text-2xl p-2">
@@ -44,8 +44,8 @@
             <br>
           </div>
           <div class="justify-between flex items-center">
-            <Button class="text-3xl" @click="$emit('closeNewTask')">{{ $t('Back')}}</Button>
-            <Button class="text-3xl">{{ $t('Add')}}</Button>
+            <Button type="button" class="text-3xl" @click="$emit('closeNewTask')">{{ $t('Done')}}</Button>
+            <Button type="submit" class="text-3xl">{{ $t('Add')}}</Button>
           </div>
         </div>
       </div>
@@ -73,7 +73,8 @@ export default {
     kind: '',
     reward: '',
     max_ticks: ''
-    }
+    },
+    created_task:null,
   }),
   mounted() {
     this.getTypes()
@@ -87,8 +88,18 @@ export default {
         .catch((err) => console.log(err))
     },
     addTask() {
-    this.$axios.post()
-
+    this.$axios.post('/api/cards/tasks/add',{
+     kind: this.form.kind,
+     reward: this.form.reward,
+     max_ticks: this.form.max_ticks,
+     card_id: this.currentCard.id
+    })
+      .then(response => {
+        this.created_task= response.data})
+      .then(() => {
+        this.$emit('addedTask', this.created_task)
+      })
+      .catch(error => console.log(error))
     }
   }
 }

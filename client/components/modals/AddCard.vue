@@ -34,7 +34,6 @@
        <div class="w-full p-2">
          <div class="justify-between">
          <label class="text-2xl">{{ $t('Tasks')}}</label>
-         <Button @click="showAddNewTask=true" type="button" class="h-4 w-4 justify-center items-center float-right">+</Button>
          </div>
          <br><br>
          <div class="w-full grid-cols-1 " v-for="task in tasks">
@@ -43,14 +42,14 @@
        </div>
    </div>
     <div class="justify-between flex items-center">
-    <Button class="text-3xl" @click="$emit('closeNewCard')">{{ $t('Back')}}</Button>
-    <Button class="text-3xl" type="submit">{{ $t('Add')}}</Button>
+    <Button class="text-3xl" @click="$emit('closeNewCard')">{{ $t('Done')}}</Button>
+    <Button class="text-3xl">{{ $t('Add')}} {{ $t('task')}}</Button>
     </div>
   </div>
 </div>
 </div>
   </form>
-  <AddCardTask :currentCard="currentCard" class="bg-black bg-opacity-25" v-if="showAddNewTask" @closeNewTask="showAddNewTask=false"/>
+  <AddCardTask :currentCard="currentCard" class="bg-black bg-opacity-25" v-if="currentCard" @closeNewTask="currentCard=null"/>
 </div>
 </template>
 
@@ -64,16 +63,16 @@ export default {
   data:() => ({
     refugees: [],
     tasks:[],
-    showAddNewTask: false,
     currentCard: null,
     form: {
       name: '',
       refugee_id: ''
-    }
+    },
   }),
   mounted() {
     this.getRefugees()
   },
+
   methods:{
     getRefugees(){
       this.$axios.$get('/api/refugees')
@@ -84,7 +83,11 @@ export default {
     },
     addCard(){
       this.$axios.post('/api/cards/add', this.form)
-        .then(response => console.log(response))
+
+        .then(response =>{
+          this.currentCard= response.data} )
+        .then(() => {
+          this.$emit("addedCard", this.currentCard)})
         .catch(error => console.log(error));
     }
   }

@@ -36,6 +36,7 @@ Route::middleware('auth:sanctum')->group(function() {
 
     Route::post('/cards/add', [\App\Http\Controllers\CardController::class, 'addCard']);
 
+    Route::get('/cards/tasks/{card}', [\App\Http\Controllers\CardController::class, 'showCardTasks']);
     Route::post('/cards/tasks/add', [\App\Http\Controllers\CardController::class, 'addTask']);
 
     Route::get('/types', [\App\Http\Controllers\CardController::class, 'showTypes']);

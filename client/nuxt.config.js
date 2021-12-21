@@ -288,6 +288,12 @@ export default {
             addCard: {
               url: '/cards/add'
             },
+            cardTasks: {
+              url: '/cards/tasks'
+            },
+            addCardTask:{
+              url: '/cards/tasks/add'
+            },
             types: {
               url: '/types'
             },

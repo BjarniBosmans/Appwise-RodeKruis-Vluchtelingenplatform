@@ -28,8 +28,8 @@ class CardController  extends Controller
         ]);
         return $card;
     }
-    public function showCardTasks(Request $request){
-        return response(['tasks' => Task::where('card_id', $request['card_id'])->get()]);
+    public function showCardTasks(Card $card){
+        return response(['tasks' => Task::where('card_id', $card['id'])->get()]);
 }
     public function addTask(Request $request){
         $fields = $request->validate([
