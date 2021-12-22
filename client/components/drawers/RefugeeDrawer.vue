@@ -24,22 +24,35 @@
           <p class="text-dark-primary text-xl p-2">{{refugee.email}}</p>
         </div>
         <br>
-        <section>
-
-        </section>
+        <div class="bg-gray-primary hover:bg-gray-secondary p-4 my-4" @click="selectedCardDetail=card" v-for="card in cards">
+        <div class="flex justify-between items-center">
+          <div>{{card.name}}</div>
+          <div><Button class="h-10"> > </Button></div>
+        </div>
+        </div>
       </section>
     </div>
+    <DetailCard :card="selectedCardDetail" class="bg-black bg-opacity-75" v-if="selectedCardDetail" @closeCardDetail="selectedCardDetail=null"/>
   </div>
 </template>
-
 <script>
+import Button from "../util/Button";
+import DetailCard from "../modals/DetailCard";
 export default {
   name: "RefugeeDrawer",
+  components: {Button, DetailCard},
   props:{
     refugee:{
       type: Object,
       required: true
     }
+  },
+  computed: {
+    currentRefugeeId() {
+      return this.refugee.id
+    }
+  },mounted() {
+    this.getCardsForRefugee()
   },
   methods:{
     deactivateRefugee(){
@@ -51,10 +64,19 @@ export default {
           this.$emit('closeRefugeeProfile')
         })
         .catch(error => console.log(error));
+    },
+    getCardsForRefugee(){
+      this.$axios.$get(`/api/cards/refugee/${this.currentRefugeeId}`)
+        .then((resp) =>{
+          this.cards= resp.cards
+        })
+        .catch((err) => console.log(err))
     }
   },data () {
     return {
-      showOptions: false
+      showOptions: false,
+      cards: [],
+      selectedCardDetail: null
     }
   },
 }

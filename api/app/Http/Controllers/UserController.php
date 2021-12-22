@@ -13,8 +13,8 @@ class UserController extends Controller
         return response(['users' => User::where('role', 'refugee')->get()]);
     }
 
-    public function showRefugee(Request $request){
-        return response(['users' => User::where('id', $request['id'])->get()]);
+    public function showRefugee(User $user){
+        return response(['users' => User::where('id', $user['id'])->get()]);
     }
     public function showRefugeesforAttendant(){
 

@@ -4,7 +4,7 @@
   <br><br>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 flex justify-between items-center"  >
 <div class= "w-full
-   bg-gray-primary text-xl p-6 my-8 rounded-lg flex justify-between items-center" v-for="task in tasks">
+   bg-gray-primary text-xl p-6 my-8 rounded-lg flex justify-between items-center hover:bg-gray-secondary" v-for="task in tasks">
   <div>{{ task.kind }}</div>
   <div></div>
 </div>
