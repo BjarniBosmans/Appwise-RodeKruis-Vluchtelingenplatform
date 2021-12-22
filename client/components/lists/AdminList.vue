@@ -22,7 +22,7 @@
 <br>
 
       <!-- Attendants -->
-      <div class="p-4 bg-gray-secondary grid grid-cols-2 md:grid-cols-3 justify-center items-center rounded-t-lg" v-if="showAttendants">
+      <div class="p-4 bg-gray-secondary grid grid-cols-2 md:grid-cols-3 flex justify-center items-center rounded-t-lg" v-if="showAttendants">
         <div class="text-xl truncate flex items-center hidden md:block">
           {{ $t('Full name') }}
           <button class="">
@@ -30,14 +30,14 @@
           </button>
         </div>
 
-        <div class="text-xl truncate flex items-center">
+        <div class="text-xl truncate flex justify-center items-center">
           Email
           <button class="">
             <img class="h-4 w-4" src="@/assets/arrows.svg">
           </button>
         </div>
 
-        <div class="text-xl truncate flex items-center">
+        <div class="text-xl truncate flex justify-center items-center">
           {{ $t('Assigned refugees')}}
           <button class="">
             <img class="h-4 w-4" src="@/assets/arrows.svg">
@@ -45,14 +45,14 @@
         </div>
       </div>
       <div class="bg-gray-primary rounded-b-lg">
-        <div  v-for="attendant in attendants" @click="selectedAttendantProfile=attendant" class="p-4 grid grid-cols-2 md:grid-cols-3 justify-center items-center" v-if="showAttendants">
+        <div  v-for="attendant in attendants" @click="selectedAttendantProfile=attendant" class="p-4 grid grid-cols-2 md:grid-cols-3 flex justify-center items-center hover:bg-gray-secondary" v-if="showAttendants">
           <div class="column text-xl truncate flex items-center hidden md:block" >
             {{ attendant.firstname }} {{ attendant.lastname }}
           </div>
-          <div class="column  text-xl truncate flex items-center">
+          <div class="column  text-xl truncate flex justify-center items-center">
             {{ attendant.email }}
           </div>
-          <div class="column  text-xl truncate flex items-center">
+          <div class="column  text-xl truncate flex justify-center items-center">
             {{ attendant.Cards }}
           </div>
         </div>
@@ -60,59 +60,61 @@
 
 
       <!-- refugees -->
-      <div class="p-4 bg-gray-secondary grid grid-cols-2 md:grid-cols-4 justify-center items-center" v-if="showRefugees">
+      <div class="p-4 bg-gray-secondary grid grid-cols-2 md:grid-cols-4 flex justify-center items-center" v-if="showRefugees">
         <div class=" text-xl truncate flex items-center">
           {{ $t('Full name')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
         </div>
-        <div class=" text-xl truncate flex items-center hidden md:block">
+        <div class=" text-xl truncate flex justify-center items-center hidden md:block">
           {{ $t('Completed ticks')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
         </div>
-        <div class=" text-xl truncate flex items-center hidden md:block">
+        <div class=" text-xl truncate flex justify-center items-center hidden md:block">
           {{ $t('Country of origin')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
         </div>
-        <div class="text-xl truncate flex items-center ">
+        <div class="text-xl truncate flex justify-center items-center ">
           {{ $t('Unique code')}}
         </div>
       </div>
       <div class="bg-gray-primary rounded-b-lg">
-      <div  v-for="refugee in refugees" @click="selectedRefugeeProfile=refugee" class="p-4 bg-gray-primary grid grid-cols-2 md:grid-cols-4  justify-center items-center" v-if="showRefugees">
-        <div class="column text-xl truncate flex items-center">
+      <div  v-for="refugee in refugees" class="p-4 bg-gray-primary grid grid-cols-2 md:grid-cols-4 flex justify-center items-center hover:bg-gray-secondary" v-if="showRefugees">
+        <div class="column text-xl truncate flex items-center" @click="selectedRefugeeProfile=refugee">
           {{ refugee.firstname }} {{ refugee.lastname }}
         </div>
-        <div class="column text-xl truncate flex items-center hidden md:block">
+        <div class="column text-xl truncate flex justify-center items-center hidden md:block" @click="selectedRefugeeProfile=refugee">
           {{ refugee.total_ticks }}
         </div>
-        <div class="column text-xl truncate flex items-center hidden md:block">
+        <div class="column text-xl truncate flex justify-center items-center hidden md:block" @click="selectedRefugeeProfile=refugee">
           {{ refugee.country_of_origin }}
         </div>
-        <div class="column text-xl truncate flex items-center ">
-          {{ refugee.unique_code }}
+        <div class="column text-xl truncate flex justify-center items-center" @mouseenter="hoverId=refugee.id" @mouseleave="hoverId=null">
+          <p id="refugee_UniqueCode" v-if="hoverId!==refugee.id && unique_codeIsHidden===false">{{ refugee.unique_code }}</p>
+          <p v-if="hoverId!==refugee.id && unique_codeIsHidden===true">******</p>
+          <button class="hover:opacity-50" type="button" @click="unique_codeIsHidden=!unique_codeIsHidden" v-if="hoverId===refugee.id"><img class="h-full w-8" src="@/assets/eye-icon.png"></button>
         </div>
       </div>
       </div>
 
 
       <!--cards-->
-      <div class="p-4 bg-gray-secondary grid grid-col-2 md:grid-cols-3 justify-center items-center" v-if="showCards">
+      <div class="p-4 bg-gray-secondary grid grid-col-2 md:grid-cols-3 flex justify-center items-center" v-if="showCards">
         <div class=" text-xl truncate flex items-center">
           {{ $t('Name')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
         </div>
-        <div class=" text-xl truncate flex items-center hidden md:block">
+        <div class=" text-xl truncate flex justify-center items-center hidden md:block">
           {{ $t('Ticks')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
         </div>
-        <div class=" text-xl truncate flex items-center">
+        <div class=" text-xl truncate flex justify-center items-center">
           {{ $t('Refugee')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
         </div>
       </div>
       <div class="bg-gray-primary rounded-b-lg">
-      <div v-for="card in cards" @click="selectedCardDetail=card" class="p-4 bg-gray-primary grid grid-cols-2 md:grid-cols-3 justify-center items-center" v-if="showCards">
+      <div v-for="card in cards" @click="selectedCardDetail=card" class="p-4 bg-gray-primary grid grid-cols-2 md:grid-cols-3 flex justify-center items-center hover:bg-gray-secondary" v-if="showCards">
         <div  class="column text-xl truncate flex items-center">
           {{card.name}}
         </div>
-        <div  class="column text-xl truncate flex items-center hidden md:block">
+        <div  class="column text-xl truncate flex justify-center items-center hidden md:block">
           {{card.ticks}}
         </div>
-        <div  class="column text-xl truncate flex items-center">
+        <div  class="column text-xl truncate flex justify-center items-center">
           {{card.refugee_id}}
         </div>
       </div>
@@ -155,7 +157,9 @@ export default {
     showAddnewCard: false,
     selectedRefugeeProfile: null,
     selectedAttendantProfile: null,
-    selectedCardDetail: null
+    selectedCardDetail: null,
+    unique_codeIsHidden: true,
+    hoverId: null
   }),
 mounted() {
   this.getRefugees()

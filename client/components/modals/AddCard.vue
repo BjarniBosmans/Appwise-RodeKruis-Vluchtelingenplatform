@@ -30,15 +30,15 @@
          <option class="text-2xl rounded" v-for="refugee in refugees" :value="refugee.id">{{ refugee.firstname }} {{ refugee.lastname}} </option>
        </select>
      </div>
-     <br><br>
+     <br>
        <div class="w-full p-2">
          <div class="justify-between">
-         <label class="text-2xl">{{ $t('Tasks')}}</label>
+         <label class="text-2xl mt-4">{{ $t('Tasks')}}</label>
          </div>
-         <br>
-         <div class="w-full p-2 grid-cols-1 text-xl" v-for="task in tasks">
+         <div class="w-full p-2 grid-cols-1 text-xl bg-gray-secondary" v-for="task in tasks">
            {{task.kind}}
          </div>
+         <br><br>
        </div>
    </div>
     <div class="justify-between flex items-center">
