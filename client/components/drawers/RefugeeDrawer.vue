@@ -1,7 +1,7 @@
 <template>
   <div class="fixed justify-center items-center inset-0 z-50 flex">
     <div  class="absolute flex flex-col bg-white rounded-lg h-screen top-0 right-0 p-16 items-center">
-      <button class="absolute top-8 left-0 transform -translate-x-full bg-white p-2 text-2xl rounded-l w-12" @click="$emit('closeRefugeeProfile')"> > </button>
+      <button class="absolute top-8 left-0 transform -translate-x-full bg-white p-2 text-2xl rounded-l w-12 hover:bg-dark-primary hover:text-white" @click="$emit('closeRefugeeProfile')"> > </button>
       <button class="bg-white rounded w-4 h-12 top-4 right-8 absolute" @click="showOptions=!showOptions">
         <div class="rounded-lg absolute md:bottom-0 right-0 bg-gray-secondary transform translate-y-full z-20" v-if="showOptions">
           <button @click.prevent="deactivateRefugee" class="block px-1 w-full py-2 text-xl hover:bg-blue-200">{{ $t('Deactivate')}}</button>

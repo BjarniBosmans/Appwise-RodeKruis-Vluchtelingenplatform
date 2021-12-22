@@ -270,6 +270,9 @@ export default {
             refugees: {
               url: '/refugees'
             },
+            showRefugee:{
+              url: '/refugee'
+            },
             addRefugee: {
               url: '/refugees/add'
             },

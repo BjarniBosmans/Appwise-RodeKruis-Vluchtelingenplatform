@@ -1,7 +1,7 @@
 <template>
 <div class="fixed justify-center items-center inset-0 z-50 flex">
 <form>
-  <div class="flex flex-col max-w-5xl rounded-lg shadow-lg bg-white">
+  <div class="flex flex-col max-w-5xl rounded-lg shadow-lg bg-white py-20">
     <div class="px-44 py-8">
       <div class="flex justify-center items-center">
         <h1 class="text-5xl">
@@ -36,25 +36,31 @@
     </div>
   </div>
 </form>
+  <AddTaskTypeConfirm class="bg-black bg-opacity-25" :type="created_type" v-if="created_type" @closeTypeConfirm="created_type=null"/>
 </div>
 </template>
 
 <script>
 import Button from "../util/Button";
+import AddTaskTypeConfirm from "./AddTaskTypeConfirm";
 export default {
   name: "AddTaskType",
-  components: {Button},
+  components: {AddTaskTypeConfirm, Button},
   data:() => ({
     form: {
       kind: '',
       reward:''
-    }
+    },
+    created_type:null
   }),
-
   methods:{
     addType(){
       this.$axios.post('/api/types/add', this.form)
-        .then(response => console.log(response))
+        .then(response => {
+        this.created_type = response.data
+      })
+        .then(() => {
+          this.$emit('addedType', this.created_type)})
         .catch(error => console.log(error));
     }
   }

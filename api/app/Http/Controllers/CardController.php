@@ -37,6 +37,7 @@ class CardController  extends Controller
             'ticks' => 'integer',
             'max_ticks' => 'required|integer',
             'reward' => 'required|string',
+            'card_id' => 'required'
 
         ]);
 
@@ -44,7 +45,8 @@ class CardController  extends Controller
         'kind' => $fields['kind'],
         'ticks' =>$fields['ticks'],
         'max_ticks' =>$fields['max_ticks'],
-        'reward' => $fields['reward']
+        'reward' => $fields['reward'],
+        'card_id' => $fields['card_id']
         ]);
         return $task;
     }

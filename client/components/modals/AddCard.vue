@@ -35,8 +35,8 @@
          <div class="justify-between">
          <label class="text-2xl">{{ $t('Tasks')}}</label>
          </div>
-         <br><br>
-         <div class="w-full grid-cols-1 " v-for="task in tasks">
+         <br>
+         <div class="w-full p-2 grid-cols-1 text-xl" v-for="task in tasks">
            {{task.kind}}
          </div>
        </div>
@@ -49,7 +49,7 @@
 </div>
 </div>
   </form>
-  <AddCardTask :currentCard="currentCard" class="bg-black bg-opacity-25" v-if="currentCard" @closeNewTask="currentCard=null"/>
+  <AddCardTask @addedTask="onTaskAdded" :currentCard="currentCard" class="bg-black bg-opacity-25" v-if="currentCard" @closeNewTask="currentCard=null"/>
 </div>
 </template>
 
@@ -89,6 +89,9 @@ export default {
         .then(() => {
           this.$emit("addedCard", this.currentCard)})
         .catch(error => console.log(error));
+    },
+    onTaskAdded(task){
+      this.tasks.push(task)
     }
   }
 }

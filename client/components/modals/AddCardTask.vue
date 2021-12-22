@@ -50,16 +50,18 @@
         </div>
       </div>
     </form>
-    <AddTaskType class="bg-black bg-opacity-25" v-if="showAddnewType" @closeNewType="showAddnewType=false"/>
+    <AddTaskType class="bg-black bg-opacity-25" @addedType="onTypeAdded" v-if="showAddnewType" @closeNewType="showAddnewType=false"/>
+    <AddCardTaskConfirm class="bg-black bg-opacity-25" v-if="created_task" @closeTaskConfirm="created_task=null"/>
   </div>
 </template>
 
 <script>
 import AddTaskType from "./AddTaskType";
 import Button from "../util/Button";
+import AddCardTaskConfirm from "./AddCardTaskConfirm";
 export default {
   name: "AddCardTask",
-  components: {AddTaskType, Button},
+  components: {AddCardTaskConfirm, AddTaskType, Button},
   props:{
   currentCard: {
     type: Object,
@@ -79,6 +81,11 @@ export default {
   mounted() {
     this.getTypes()
   },
+  computed: {
+    currentCardId() {
+      return this.currentCard.id
+    }
+  },
   methods: {
     getTypes() {
       this.$axios.$get('/api/types')
@@ -88,18 +95,23 @@ export default {
         .catch((err) => console.log(err))
     },
     addTask() {
-    this.$axios.post('/api/cards/tasks/add',{
-     kind: this.form.kind,
-     reward: this.form.reward,
-     max_ticks: this.form.max_ticks,
-     card_id: this.currentCard.id
-    })
-      .then(response => {
-        this.created_task= response.data})
-      .then(() => {
-        this.$emit('addedTask', this.created_task)
+      this.$axios.post('/api/cards/tasks/add', {
+        kind: this.form.kind,
+        reward: this.form.reward,
+        ticks: 0,
+        max_ticks: this.form.max_ticks,
+        card_id: this.currentCardId
       })
-      .catch(error => console.log(error))
+        .then(response => {
+          this.created_task = response.data
+        })
+        .then(() => {
+          this.$emit('addedTask', this.created_task)
+        })
+        .catch(error => console.log(error))
+     },
+    onTypeAdded(type){
+      this.types.push(type)
     }
   }
 }

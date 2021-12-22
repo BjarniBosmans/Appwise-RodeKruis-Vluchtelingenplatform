@@ -118,10 +118,9 @@
       </div>
       </div>
 
-
       <AttendantRegistration class="bg-black bg-opacity-75" v-if="showRegistrationAttendant" @addedAttendant="onAttendantAdded" @closeRegAttendant="showRegistrationAttendant=false"/>
       <RefugeeRegistration class="bg-black bg-opacity-75" v-if="showRegistration" @addedRefugee="onRefugeeAdded" @closeReg="showRegistration=false"/>
-      <AddCard class="bg-black bg-opacity-75" v-if="showAddnewCard" @closeNewCard="showAddnewCard=false"/>
+      <AddCard class="bg-black bg-opacity-75" v-if="showAddnewCard" @addedCard="onCardAdded" @closeNewCard="showAddnewCard=false"/>
       <RefugeeDrawer :refugee="selectedRefugeeProfile" @delete-refugee="onRefugeeDelete" class="bg-black bg-opacity-75" v-if="selectedRefugeeProfile" @closeRefugeeProfile="selectedRefugeeProfile=null"/>
       <AttendantDrawer :attendant="selectedAttendantProfile" @delete-attendant="onAttendantDelete" class="bg-black bg-opacity-75" v-if="selectedAttendantProfile" @closeAttendantProfile="selectedAttendantProfile=null"/>
       <DetailCard :card="selectedCardDetail" class="bg-black bg-opacity-75" v-if="selectedCardDetail" @closeCardDetail="selectedCardDetail=null"/>
@@ -199,6 +198,9 @@ methods:{
   onRefugeeDelete(user){
     const index = this.refugees.findIndex(userInArray => userInArray.id === user.id)
     this.refugees.splice(index, 1)
+  },
+  onCardAdded(card){
+    this.cards.push(card)
   }
 }
 

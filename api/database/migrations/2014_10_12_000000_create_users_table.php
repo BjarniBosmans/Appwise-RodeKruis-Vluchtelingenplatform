@@ -40,7 +40,7 @@ class CreateUsersTable extends Migration
 
         Schema::create('tasks', function (Blueprint $table){
            $table->id();
-            $table->string('kind')->unique();
+            $table->string('kind');
             $table->unsignedBigInteger('card_id');
             $table->integer('ticks')->default(0);
             $table->integer('max_ticks')->default(0);
