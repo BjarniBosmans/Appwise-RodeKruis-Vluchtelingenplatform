@@ -3,8 +3,8 @@
   <h1 class="text-5xl font-medium text-dark-primary p-2">{{ $auth.user.firstname }} {{ $auth.user.lastname }}</h1>
   <p class="text-2xl text-dark-primary p-4">{{$t('Reward')}} {{$t('card')}}</p>
   <br>
-  <div class="grid grid-cols-1 md:grid-cols-2  w-1/3 gap-3
-   bg-gray-primary text-xl flex flex-col justify-between items-center p-6 my-8 rounded-lg" v-for="card in cards" @click="selectedCardDetail=card; cardList=false" v-if="cardList">
+  <div class="grid grid-cols-1 md:grid-cols-2 w-1/3 gap-3
+   bg-gray-primary text-xl flex justify-between items-center p-6 my-8 rounded-lg" v-for="card in cards" @click="selectedCardDetail=card; cardList=false" v-if="cardList">
  <div>{{ card.name}}</div>
     <div>{{card.ticks}}
     /
@@ -12,7 +12,7 @@
   completed
       </div>
   </div>
-<RefugeePageCards :current-card="selectedCardDetail" v-if="selectedCardDetail" @closeCardDetail="selectedCardDetail=null; cardList=true"/>
+<RefugeePageCards :currentCard="selectedCardDetail" v-if="selectedCardDetail" @closeCardDetail="selectedCardDetail=null; cardList=true"/>
 </div>
 </template>
 <script>

@@ -2,7 +2,7 @@
 <div>
 <button class="text-dark-primary p-2 text-3xl rounded-l w-12 float-right" @click="$emit('closeCardDetail')">X</button>
 <div class="flex flex-col grid grid-cols-1 md:grid-cols-2 bg-gray-primary text-xl gap-3 justify-between items-center p-6 my-8 w-1/3 rounded-lg" v-for="task in tasks">
-  <div>{{task.kind}}</div>
+  <div>{{ task.kind }}</div>
   <div></div>
 </div>
 </div>
@@ -19,17 +19,22 @@ export default {
       required: true
     }
   },
+  computed: {
+    currentCardId() {
+      return this.currentCard.id
+    }
+  },
   mounted() {
-  this.getCardTasks()
+    this.getCardTasks()
   },
   methods:{
   getCardTasks(){
-  this.$axios.get(`/cards/tasks/${this.currentCard}`)
+  this.$axios.get(`/api/cards/tasks/${this.currentCardId}`)
     .then((resp) =>{
-      this.tasks= resp.tasks
+      this.tasks= resp.data.tasks
     })
     .catch((err) => console.log(err))
-  },
+  }
   }
 }
 </script>
