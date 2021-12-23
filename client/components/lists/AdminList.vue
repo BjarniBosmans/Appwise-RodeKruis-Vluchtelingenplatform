@@ -9,18 +9,12 @@
       <Button class=" left-0 w-full sm:w-auto justify-center focus:bg-dark-primary focus:text-white" @click="showAttendants=false;showRefugees=false; showCards=true">{{ $t('Cards')}}</Button>
       </div>
         <div class="flex w-full sm:w-auto">
-        <Button v-if="showRefugees" class=" w-full sm:w-auto justify-center" @click="showRegistration=true">
-          <template #icon>
-
-          </template>
-          {{ $t('Add')}}
-        </Button>
+        <Button v-if="showRefugees" class=" w-full sm:w-auto justify-center" @click="showRegistration=true">{{ $t('Add')}}</Button>
         <Button v-if="showAttendants" class=" w-full sm:w-auto justify-center" @click="showRegistrationAttendant=true">{{ $t('Add')}}</Button>
         <Button v-if="showCards" class=" w-full sm:w-auto justify-center" @click="showAddnewCard=true">{{ $t('Add')}}</Button>
         </div>
       </div>
 <br>
-
       <!-- Attendants -->
       <div class="p-4 bg-gray-secondary grid grid-cols-2 md:grid-cols-3 flex justify-center items-center rounded-t-lg" v-if="showAttendants">
         <div class="text-xl truncate flex items-center">
@@ -95,7 +89,7 @@
 
 
       <!--cards-->
-      <div class="p-4 bg-gray-secondary grid grid-col-2 md:grid-cols-3 flex justify-center items-center rounded-t-lg" v-if="showCards">
+      <div class="p-4 bg-gray-secondary grid grid-cols-2 md:grid-cols-3 flex justify-center items-center rounded-t-lg" v-if="showCards">
         <div class="text-xl truncate flex items-center">
           {{ $t('Name')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
         </div>
@@ -119,7 +113,6 @@
         </div>
       </div>
       </div>
-
       <AttendantRegistration class="bg-black bg-opacity-75" v-if="showRegistrationAttendant" @addedAttendant="onAttendantAdded" @closeRegAttendant="showRegistrationAttendant=false"/>
       <RefugeeRegistration class="bg-black bg-opacity-75" v-if="showRegistration" @addedRefugee="onRefugeeAdded" @closeReg="showRegistration=false"/>
       <AddCard class="bg-black bg-opacity-75" v-if="showAddnewCard" @addedCard="onCardAdded" @closeNewCard="showAddnewCard=false"/>

@@ -52,7 +52,7 @@
       </div>
 
     <!-- cards -->
-    <div class="p-4 bg-gray-secondary grid grid-col-2 md:grid-cols-4 justify-center items-center" v-if="showCards">
+    <div class="p-4 bg-gray-secondary grid grid-cols-2 md:grid-cols-4 justify-center items-center" v-if="showCards">
       <div class=" text-xl truncate flex items-center">
         {{ $t('Type')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
       </div>
