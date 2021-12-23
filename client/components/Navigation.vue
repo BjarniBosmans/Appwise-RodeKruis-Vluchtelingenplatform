@@ -10,7 +10,7 @@
             alt="logo" />
         </li>
         <li>
-          <input class=" md:w-96 md:block rounded-lg bg-gray-primary outline-none p-3 text-xl hidden border border-transparent border-solid focus:border-accent-secondary duration-200" :placeholder="$t('Search')"/>
+          <input v-if="$auth.user.role!=='refugee'" class=" md:w-96 md:block rounded-lg bg-gray-primary outline-none p-3 text-xl hidden border border-transparent border-solid focus:border-accent-secondary duration-200" :placeholder="$t('Search')"/>
         </li>
       </ul>
 

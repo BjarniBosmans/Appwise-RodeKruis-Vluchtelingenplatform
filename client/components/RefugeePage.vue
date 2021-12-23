@@ -10,7 +10,7 @@
     <div>{{card.ticks}}
     /
   {{card.total_ticks}}
-  completed
+      {{$t('completed')}}
       </div>
   </div>
   </div>
@@ -27,6 +27,7 @@ export default {
     cards: [],
     selectedCardDetail: false,
     cardList: true,
+    completedCard: false
   }),
   mounted() {
     this.getCardsForRefugee()

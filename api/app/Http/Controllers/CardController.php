@@ -51,6 +51,10 @@ class CardController  extends Controller
         return $task;
     }
 
+    public function increaseTaskTicks(Task $task){
+
+    }
+
     public function showTypes(){
         return response(['types' => Type::where('kind', !'null')->get()]);
     }

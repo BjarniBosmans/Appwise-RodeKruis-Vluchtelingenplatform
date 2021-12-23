@@ -25,7 +25,7 @@
     </div>
     <br>
     <section>
-      <p class="text-xl text-bold">{{ $t('Assigned refugees')}}</p>
+      <p class="text-xl text-bold">{{ $t('Assigned refugees')}}:</p>
       <button class="text-xl"></button>
       <div>
 

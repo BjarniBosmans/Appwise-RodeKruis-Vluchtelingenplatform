@@ -27,7 +27,7 @@
         <div class="bg-gray-primary hover:bg-gray-secondary p-4 my-4" @click="selectedCardDetail=card" v-for="card in cards">
         <div class="flex justify-between items-center">
           <div>{{card.name}}</div>
-          <div><Button class="h-10"> > </Button></div>
+          <div><button class="px-6 py-4 text-2xl rounded-lg flex items-center h-10 bg-white hover:bg-accent-primary hover:text-white duration-200"> > </button></div>
         </div>
         </div>
       </section>
