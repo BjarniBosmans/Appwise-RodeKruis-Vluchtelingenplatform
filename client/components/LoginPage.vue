@@ -1,8 +1,8 @@
 <template>
   <div class="justify-center relative items-center flex flex-col w-full">
-<LanguageSwitcher class="right-0 top-0 "/>
+<LanguageSwitcher class="absolute  right-8 top-4 "/>
     <img class="absolute object-contain w-40 h-40 top-20 left-1/2 transform -translate-x-1/2" src="@/assets/Flag_of_the_Red_Cross.svg.png">
-    <div class="w-full px-16 max-w-2xl">
+    <div class="w-full px-16 max-w-2xl absolute">
       <div>
         <h1 class="text-dark-primary text-4xl font-bold">{{ $t('Welcome') }}</h1>
         <p>{{ $t('Please sign in.') }}</p>
@@ -20,8 +20,6 @@
           <br>
           <input class="bg-gray-secondary w-full text-2xl p-2" type="password" v-model="form.unique_code"/>
         </div>
-        <br>
-        <a class="text-dark-primary right-0">{{ $t('Forgot code ?') }}</a>
         <br>
         <button class="justify-center text-2xl px-6 py-4 rounded-lg bg-accent-secondary text-white flex items-center
   hover:bg-dark-primary hover:text-white duration-200">{{ $t('Login') }}</button>
@@ -52,7 +50,7 @@ export default {
           password: this.form.unique_code
         }
       })
-        .then(response => this.$router.push('/'))
+        .then(response => this.$router.push(this.localePath('/')))
         .catch(error => console.log(error))
     }
   }

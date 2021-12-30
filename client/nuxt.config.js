@@ -24,8 +24,7 @@ export default {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-  ],
+  plugins: ['~/plugins/router'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -47,18 +46,27 @@ export default {
   i18n: {
     locales: [
       {
-        code:'en'
+        code:'en',
+        name: 'English',
+        image: '@/assets/UK.png'
       },{
-        code:'fr'
+        code:'fr',
+        name: 'Français',
+        image: '@/assets/France.png'
       },
       {
-        code:'de'
+        code:'de',
+        name: 'Deutsch',
+        image: '@/assets/germany.png'
       },
       {
-        code:'nl'
+        code:'nl',
+        name: 'Nederlands',
+        image: '@/assets/NL.png'
       }
     ],
     defaultLocale: 'en',
+    skipSettingLocaleOnNavigate: true,
     vueI18n: {
       fallbackLocale: 'en',
       messages: {
@@ -269,6 +277,9 @@ export default {
             },
             refugees: {
               url: '/refugees'
+            },
+            showRefugeesForAttendant:{
+              url: '/refugees/attendant'
             },
             showRefugee:{
               url: '/refugee'

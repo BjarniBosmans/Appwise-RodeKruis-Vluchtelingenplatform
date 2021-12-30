@@ -8,9 +8,11 @@
   <label class="text-3xl">{{ $t('Refugee')}}:  <span class="text-accent-secondary" v-for="refugee in currentRefugee">{{refugee.firstname}} {{refugee.lastname}}</span></label>
   </div>
   <div class="right-0">
+    <br>
   <button class="text-dark-primary p-2 text-3xl rounded-l w-12" @click="$emit('closeCardDetail')"> X </button>
   </div>
   </div>
+    <Button class="text-2xl" @click="currentCard=card">{{ $t('Add new task')}}</Button>
     <div class= "w-full
    bg-gray-primary text-2xl my-8 rounded-lg flex justify-between items-center hover:bg-gray-secondary p-8" v-for="task in tasks">
       <div class="mr-24">{{ task.kind }}</div>
@@ -27,14 +29,19 @@
 <!--      </div>-->
       </div>
   </div>
+  <AddCardTask @addedTask="onTaskAdded" :currentCard="currentCard" class="bg-black bg-opacity-25" v-if="currentCard" @closeNewTask="currentCard=null"/>
 </div>
 </template>
 
 <script>
+import Button from "../util/Button";
+import AddCardTask from "./AddCardTask";
 export default {
   name: "DetailCard",
+  components: {AddCardTask,Button},
   data:() => ({
     tasks: [],
+    currentCard: null,
     currentRefugee: []
   }),
   props:{
@@ -69,6 +76,9 @@ export default {
           this.currentRefugee= resp.users
         })
         .catch((err) => console.log(err))
+    },
+    onTaskAdded(task){
+      this.tasks.push(task)
     }
   }
 }

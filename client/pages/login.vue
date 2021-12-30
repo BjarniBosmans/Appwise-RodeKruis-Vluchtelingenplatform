@@ -15,6 +15,11 @@
 import LoginPage from "../components/LoginPage";
 import LanguageSwitcher from "../components/util/LanguageSwitcher";
 export default {
+  transition: {
+    beforeEnter() {
+      this.$i18n.finalizePendingLocaleChange()
+    }
+  },
   name: "login",
   components: {LanguageSwitcher, LoginPage}
 }

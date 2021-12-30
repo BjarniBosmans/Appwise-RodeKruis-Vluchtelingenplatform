@@ -1,10 +1,9 @@
 <template>
 <div>
-<button class="text-dark-primary p-2 text-3xl rounded-l w-12 float-right" @click="$emit('closeCardDetail')">X</button>
-  <br><br>
+<button class="text-dark-primary p-2 text-3xl rounded-l w-12 float-right ml-4 mb-2" @click="$emit('closeCardDetail')"> > </button>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 flex justify-between items-center">
 <div class= "w-full
-   bg-gray-primary text-xl p-6 my-8 rounded-lg flex justify-between items-center hover:bg-gray-secondary" v-for="task in tasks">
+   bg-gray-primary text-xl p-4 my-2 rounded-lg flex justify-between items-center hover:bg-gray-secondary" v-for="task in tasks">
   <div>{{ task.kind }}</div>
   <div class="flex flex-wrap">
     <div v-for="(tick, tickindex) in task.max_ticks">

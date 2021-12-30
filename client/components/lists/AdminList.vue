@@ -47,7 +47,7 @@
             {{ attendant.email }}
           </div>
           <div class="column  text-xl truncate flex justify-center items-center">
-            {{ attendant.Cards }}
+            {{ getRefugeesForAttendant(attendant) }}
           </div>
         </div>
       </div>
@@ -81,7 +81,7 @@
         </div>
         <div class="column text-xl truncate flex justify-center items-center" @mouseenter="hoverId=refugee.id" @mouseleave="hoverId=null">
           <p id="refugee_UniqueCode" v-if="hoverId!==refugee.id && unique_codeIsHidden===false">{{ refugee.unique_code }}</p>
-          <p v-if="hoverId!==refugee.id && unique_codeIsHidden===true">******</p>
+          <p v-if="hoverId!==refugee.id && unique_codeIsHidden===true">*** ***</p>
           <button class="hover:opacity-50" type="button" @click="unique_codeIsHidden=!unique_codeIsHidden" v-if="hoverId===refugee.id"><img class="h-full w-8" src="@/assets/eye-icon.png"></button>
         </div>
       </div>
@@ -109,7 +109,7 @@
           {{card.ticks}}
         </div>
         <div class="column text-xl truncate flex justify-center items-center">
-          {{card.refugee_id}}
+          {{}}
         </div>
       </div>
       </div>
@@ -141,6 +141,7 @@ export default {
   data:() => ({
     refugees: [],
     attendants: [],
+    refugeesForAttendants: [],
     cards: [],
     showAttendants: true,
     showRefugees: false,
@@ -167,9 +168,7 @@ methods:{
       })
       .catch((err) => console.log(err))
   },
-  showRefugeeName(refugee){
-    this.$axios.$get(`/api/refugee/${refugee.id}`)
-  },
+
   getAttendants(){
     this.$axios.$get('/api/attendants')
     .then((resp) => {
@@ -177,7 +176,12 @@ methods:{
     })
     .catch((err) => console.log(err))
   },
-
+ async getRefugeesForAttendant(attendant){
+   return await this.$axios.get(`/api/refugees/attendant/${attendant.id}`)
+     .then((resp) =>{
+       this.refugeesForAttendants= resp.users
+     })
+  },
   getCards(){
     this.$axios.$get('/api/cards')
     .then((resp) =>{

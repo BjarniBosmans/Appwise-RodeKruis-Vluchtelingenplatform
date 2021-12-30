@@ -45,7 +45,7 @@
           </div>
           <div class="justify-between flex items-center">
             <Button type="button" class="text-3xl" @click="$emit('closeNewTask')">{{ $t('Done')}}</Button>
-            <Button type="submit" class="text-3xl">{{ $t('Add')}}</Button>
+            <Button type="submit" class="text-3xl">{{ $t('Add task to card')}}</Button>
           </div>
         </div>
       </div>

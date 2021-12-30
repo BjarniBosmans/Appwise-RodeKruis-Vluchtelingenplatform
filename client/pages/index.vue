@@ -20,6 +20,11 @@ import AttendantList from "../components/lists/AttendantList";
 import AdminList from "../components/lists/AdminList";
 import RefugeePage from "../components/RefugeePage";
 export default{
+  transition: {
+    beforeEnter() {
+      this.$i18n.finalizePendingLocaleChange()
+    }
+  },
   name: 'home',
   components: {RefugeePage, AdminList, AttendantList, MainPage, Navigation},
   middleware: 'auth',

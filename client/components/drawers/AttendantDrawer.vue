@@ -27,8 +27,11 @@
     <section>
       <p class="text-xl text-bold">{{ $t('Assigned refugees')}}:</p>
       <button class="text-xl"></button>
-      <div>
-
+      <div class="bg-gray-primary hover:bg-gray-secondary p-4 my-4" v-for="refugee in refugees">
+        <div class="flex justify-between items-center">
+          <div>{{refugee.firstname}} {{refugee.lastname}}</div>
+          <div><button class="px-6 py-4 text-2xl rounded-lg flex items-center h-10 bg-white hover:bg-accent-primary hover:text-white duration-200"> > </button></div>
+        </div>
       </div>
     </section>
   </section>
@@ -41,16 +44,27 @@ import Button from "../util/Button";
 export default {
   name: "AttendantDrawer",
   components: {Button},
-
+  data () {
+  return {
+    refugees: [],
+    showOptions: false
+  }},
+  mounted() {
+    this.showRefugeesForAttendant()
+  },
   props:{
     attendant:{
       type: Object,
       required: true
     }
+  }, computed: {
+    attendantId() {
+      return this.attendant.id
+    }
   },
   methods:{
   deactivateAttendant(){
-     this.$axios.delete(`/api/deactivateUser/${this.attendant.id}`)
+     this.$axios.delete(`/api/deactivateUser/${this.attendantId}`)
     .then(() => {
       this.$emit("delete-attendant", this.attendant)
      })
@@ -58,11 +72,14 @@ export default {
          this.$emit('closeAttendantProfile')
        })
      .catch(error => console.log(error));
+  },
+  showRefugeesForAttendant(){
+    this.$axios.$get(`/api/refugees/attendant/${this.attendantId}`)
+      .then((resp) => {
+        this.refugees= resp.users
+      })
+      .catch((err) => console.log(err))
   }
-  },data () {
-    return {
-      showOptions: false
-    }
   },
 }
 </script>

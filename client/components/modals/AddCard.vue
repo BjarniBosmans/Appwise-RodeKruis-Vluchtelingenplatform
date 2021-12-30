@@ -43,7 +43,7 @@
    </div>
     <div class="justify-between flex items-center">
     <Button class="text-3xl" @click="$emit('closeNewCard')">{{ $t('Done')}}</Button>
-    <Button class="text-3xl">{{ $t('Add')}} {{ $t('task')}}</Button>
+    <Button class="text-3xl">{{ $t('Assign')}} {{ $t('task')}}</Button>
     </div>
   </div>
 </div>
@@ -83,7 +83,6 @@ export default {
     },
     addCard(){
       this.$axios.post('/api/cards/add', this.form)
-
         .then(response =>{
           this.currentCard= response.data} )
         .then(() => {

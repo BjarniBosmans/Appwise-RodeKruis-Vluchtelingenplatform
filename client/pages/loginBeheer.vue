@@ -15,6 +15,11 @@
 import LanguageSwitcher from "../components/util/LanguageSwitcher";
 import LoginPageBeheer from "../components/LoginPageBeheer";
 export default {
+  transition: {
+    beforeEnter() {
+      this.$i18n.finalizePendingLocaleChange()
+    }
+  },
   name: "loginBeheer",
   components: {LoginPageBeheer, LanguageSwitcher}
 }
