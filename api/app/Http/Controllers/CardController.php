@@ -38,7 +38,6 @@ class CardController  extends Controller
             'max_ticks' => 'required|integer',
             'reward' => 'required|string',
             'card_id' => 'required'
-
         ]);
 
         $task= Task::create([
@@ -51,8 +50,12 @@ class CardController  extends Controller
         return $task;
     }
 
-    public function increaseTaskTicks(Task $task){
+    public function changeTaskTicks(Request $request){
+        $currentTask= Task::where('id', $request->input('id'))->first();
 
+        $currentTask->ticks= $request->input('ticks');
+
+        $currentTask->save();
     }
 
     public function showTypes(){

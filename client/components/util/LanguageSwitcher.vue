@@ -2,7 +2,9 @@
   <div>
     <nuxt-link class="text-xl bg-gray-primary rounded-lg hover:bg-dark-primary hover:text-white p-4" v-for="locale in availableLocales"
                        :key="locale.code"
-                       :to="switchLocalePath(locale.code)">{{locale.image}}{{ locale.name }}
+                       :to="switchLocalePath(locale.code)">
+<!--      <img class="h-8 w-8" src='{{locale.image}}'/>-->
+      {{ locale.name }}
     </nuxt-link>
 <!--    <select class="p-4 flex justify-content items-center bg-gray-secondary rounded-lg">-->
 <!--    <option class="text-xl">{{ $t('Please select a language') }}</option>-->

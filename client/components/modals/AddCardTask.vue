@@ -23,7 +23,7 @@
               </div>
               <br>
               <select v-model="form.kind" class="text-2xl p-2 rounded bg-gray-secondary w-full" id="type_input">
-                <option class="text-2xl p-2 rounded" v-for="type in types">{{type.kind}}</option>
+                <option class="text-2xl p-2 rounded" :value="type" v-for="type in types">{{type.kind}}</option>
               </select>
               <br><br>
               <label class="text-2xl p-2">
@@ -32,7 +32,7 @@
               <br><br>
               <div class="w-full bg-gray-secondary p-2 rounded">
                 <input
-                  class="text-2xl bg-gray-secondary w-full" v-model="form.reward" id="reward-input"/>
+                  class="text-2xl bg-gray-secondary w-full" disabled v-model="form.reward" id="reward-input"/>
               </div>
               <br>
               <label class="text-2xl p-2">
@@ -86,6 +86,11 @@ export default {
       return this.currentCard.id
     }
   },
+  watch: {
+   "form.kind": function (kind){
+     this.form.reward= kind.reward
+   }
+  },
   methods: {
     getTypes() {
       this.$axios.$get('/api/types')
@@ -96,7 +101,7 @@ export default {
     },
     addTask() {
       this.$axios.post('/api/cards/tasks/add', {
-        kind: this.form.kind,
+        kind: this.form.kind.kind,
         reward: this.form.reward,
         ticks: 0,
         max_ticks: this.form.max_ticks,
@@ -107,6 +112,9 @@ export default {
         })
         .then(() => {
           this.$emit('addedTask', this.created_task)
+          this.form.kind=''
+          this.form.reward=''
+          this.form.max_ticks=''
         })
         .catch(error => console.log(error))
      },

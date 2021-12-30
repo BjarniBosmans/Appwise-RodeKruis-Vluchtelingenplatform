@@ -48,21 +48,21 @@ export default {
       {
         code:'en',
         name: 'English',
-        image: '@/assets/UK.png'
+        image: '~assets/UK.png'
       },{
         code:'fr',
         name: 'Français',
-        image: '@/assets/France.png'
+        image: '~assets/France.png'
       },
       {
         code:'de',
         name: 'Deutsch',
-        image: '@/assets/germany.png'
+        image: '~assets/germany.png'
       },
       {
         code:'nl',
         name: 'Nederlands',
-        image: '@/assets/NL.png'
+        image: '~assets/NL.png'
       }
     ],
     defaultLocale: 'en',
@@ -307,6 +307,9 @@ export default {
             },
             addCardTask:{
               url: '/cards/tasks/add'
+            },
+            updateTaskTicks:{
+              url: '/cards/tasks/update'
             },
             types: {
               url: '/types'

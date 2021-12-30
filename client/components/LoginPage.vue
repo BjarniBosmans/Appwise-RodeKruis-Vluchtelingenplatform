@@ -12,13 +12,17 @@
         <div class="bg-gray-secondary rounded p-4">
           <label class="text-dark-primary">Email</label>
           <br>
-          <input class="bg-gray-secondary w-full text-2xl p-2" type="email" v-model="form.username"/>
+          <input class="bg-gray-secondary w-full text-2xl p-2" type="email" v-model="form.email"/>
+          <br>
+<!--          <p class="text-xl text-accent-primary w-full p-2" v-if="!isEmailFilled">{{ $t('Please fill in a correct email.') }}</p>-->
         </div>
         <br>
         <div class="bg-gray-secondary rounded p-4">
-          <label class="text-dark-primary">{{ $t('Unique code') }}</label>
+          <label class="text-dark-primary">{{ $t('Password') }}</label>
           <br>
-          <input class="bg-gray-secondary w-full text-2xl p-2" type="password" v-model="form.unique_code"/>
+          <input class="bg-gray-secondary w-full text-2xl p-2" type="password" v-model="form.password"/>
+          <br>
+<!--          <p class="text-xl text-accent-primary w-full p-2" v-if="!isPasswordFilled">{{ $t('Please fill in a correct password.') }}</p>-->
         </div>
         <br>
         <button class="justify-center text-2xl px-6 py-4 rounded-lg bg-accent-secondary text-white flex items-center
@@ -39,20 +43,20 @@ export default {
   data(){
     return{
       form:{
-        username: '',
-        unique_code: ''
+        email: null,
+        password: null
       }}},
   methods:{
     async loginRefugee(){
-      await this.$auth.loginWith('laravelSanctum', {
-        data: {
-          email: this.form.username,
-          password: this.form.unique_code
-        }
-      })
-        .then(response => this.$router.push(this.localePath('/')))
-        .catch(error => console.log(error))
-    }
+        await this.$auth.loginWith('laravelSanctum', {
+          data: {
+            email: this.form.email,
+            password: this.form.password
+          }
+        })
+          .then(response => this.$router.push(this.localePath('/')))
+          .catch(error => console.log(error))
+      }
   }
 
 }

@@ -44,7 +44,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $appends = ['total_ticks'];
+//    protected $appends = ['total_ticks'];
 
     /**
      * The attributes that should be cast.

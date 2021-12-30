@@ -18,7 +18,9 @@
       <div class="mr-24">{{ task.kind }}</div>
       <div class="flex flex-wrap">
         <div class="" v-for="(tick, tickindex) in task.max_ticks">
-          <input type="radio" :checked="tickindex < task.ticks" class="h-6 w-6 m-0.5">
+          <button @click="updateTaskTicks(task,tickindex+1)" :class="[
+            tickindex < task.ticks? 'bg-accent-secondary': 'bg-white'
+          ]" class="rounded-full h-5 w-5 m-0.5 border-black border"></button>
         </div>
       </div>
 <!--      <div class="flex flex-wrap">-->
@@ -58,6 +60,7 @@ export default {
       return this.card.refugee_id
     }
   },
+
   mounted() {
     this.getCardTasks()
     this.getRefugee()
@@ -76,6 +79,16 @@ export default {
           this.currentRefugee= resp.users
         })
         .catch((err) => console.log(err))
+    },
+    updateTaskTicks(task, newTicks){
+      task.ticks= newTicks
+       this.$axios.$patch('/api/cards/tasks/update',
+        {
+        id: task.id,
+        ticks: newTicks
+        }
+      )
+         .catch((err) => console.log(err))
     },
     onTaskAdded(task){
       this.tasks.push(task)

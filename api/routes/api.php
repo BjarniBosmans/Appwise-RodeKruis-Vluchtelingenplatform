@@ -40,6 +40,7 @@ Route::middleware('auth:sanctum')->group(function() {
 
     Route::get('/cards/tasks/{card}', [\App\Http\Controllers\CardController::class, 'showCardTasks']);
     Route::post('/cards/tasks/add', [\App\Http\Controllers\CardController::class, 'addTask']);
+    Route::patch('cards/tasks/update', [\App\Http\Controllers\CardController::class, 'changeTaskTicks']);
 
     Route::get('/types', [\App\Http\Controllers\CardController::class, 'showTypes']);
     Route::post('/types/add', [\App\Http\Controllers\CardController::class, 'addType']);
