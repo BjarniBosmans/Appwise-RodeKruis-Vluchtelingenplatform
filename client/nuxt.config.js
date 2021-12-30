@@ -1,5 +1,4 @@
 import * as url from "url";
-
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -48,21 +47,17 @@ export default {
       {
         code:'en',
         name: 'English',
-        image: '~assets/UK.png'
       },{
         code:'fr',
         name: 'Français',
-        image: '~assets/France.png'
       },
       {
         code:'de',
         name: 'Deutsch',
-        image: '~assets/germany.png'
       },
       {
         code:'nl',
         name: 'Nederlands',
-        image: '~assets/NL.png'
       }
     ],
     defaultLocale: 'en',
