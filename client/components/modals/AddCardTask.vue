@@ -2,7 +2,7 @@
   <div class="fixed justify-center items-center inset-0 z-50 flex">
     <form @submit.prevent="addTask">
       <div class="flex flex-col max-w-5xl rounded-lg shadow-lg bg-white">
-        <div class="px-44 py-8">
+        <div class="px-48 py-8">
           <div class="flex justify-center items-center">
             <h1 class="text-5xl">
       <span class="text-accent-secondary">
@@ -17,7 +17,7 @@
             <div class="w-full p-2">
               <div class="flex justify-between">
                 <label class="text-2xl p-2">
-                  {{ $t('Type')}}
+                  {{ $t('Reward category')}}
                 </label>
                 <Button class="h-4 w-4 justify-center items-center float-right" type="button" @click="showAddnewType=true">+</Button>
               </div>
@@ -39,19 +39,20 @@
                 {{ $t('Max ticks')}}
               </label>
               <br>
-              <input class="bg-gray-secondary rounded w-full text-2xl p-2" v-model="form.max_ticks" id="max_ticks-input"/>
+              <input class="bg-gray-secondary rounded w-full text-2xl p-2" v-model="form.max_ticks" id="max_ticks-input"/><br>
+              <p class="text-xl text-accent-primary w-full p-2" v-if="hasTicksError">{{ $t('Please assign a number of ticks.') }}</p>
             </div>
             <br>
           </div>
           <div class="justify-between flex items-center">
             <Button type="button" class="text-3xl" @click="$emit('closeNewTask')">{{ $t('Done')}}</Button>
-            <Button type="submit" class="text-3xl">{{ $t('Add task to card')}}</Button>
+            <Button type="submit" class="text-3xl">{{ $t('Add')}} {{ $t('task')}}</Button>
           </div>
         </div>
       </div>
     </form>
-    <AddTaskType class="bg-black bg-opacity-25" @addedType="onTypeAdded" v-if="showAddnewType" @closeNewType="showAddnewType=false"/>
-    <AddCardTaskConfirm class="bg-black bg-opacity-25" v-if="created_task" @closeTaskConfirm="created_task=null"/>
+    <AddTaskType class="" @addedType="onTypeAdded" v-if="showAddnewType" @closeNewType="showAddnewType=false"/>
+    <AddCardTaskConfirm class="" v-if="created_task" @closeTaskConfirm="created_task=null"/>
   </div>
 </template>
 
@@ -71,6 +72,7 @@ export default {
   data:() => ({
     types: [],
     showAddnewType: false,
+    hasTicksError: false,
     form: {
     kind: '',
     reward: '',
@@ -89,7 +91,10 @@ export default {
   watch: {
    "form.kind": function (kind){
      this.form.reward= kind.reward
-   }
+   },
+    'form.max_ticks': function (max_ticks){
+      this.hasTicksError= !max_ticks
+    }
   },
   methods: {
     getTypes() {

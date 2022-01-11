@@ -109,10 +109,11 @@
           {{card.ticks}}
         </div>
         <div class="column text-xl truncate flex justify-center items-center">
-          {{}}
+          {{card.refugee_id}}
         </div>
       </div>
       </div>
+
       <AttendantRegistration class="bg-black bg-opacity-75" v-if="showRegistrationAttendant" @addedAttendant="onAttendantAdded" @closeRegAttendant="showRegistrationAttendant=false"/>
       <RefugeeRegistration class="bg-black bg-opacity-75" v-if="showRegistration" @addedRefugee="onRefugeeAdded" @closeReg="showRegistration=false"/>
       <AddCard class="bg-black bg-opacity-75" v-if="showAddnewCard" @addedCard="onCardAdded" @closeNewCard="showAddnewCard=false"/>

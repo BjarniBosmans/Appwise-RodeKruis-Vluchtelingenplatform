@@ -1,6 +1,8 @@
 import * as url from "url";
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  ssr: true,
+  target: 'static',
   head: {
     title: 'Rode Kruis - Vluchtelingenplatform',
     htmlAttrs: {
@@ -99,7 +101,7 @@ export default {
           "Add attendant": "Add attendant",
           "Ticks": "Ticks",
           "Max ticks": "Maximum ticks",
-          "Type": "Type",
+          "Reward category": "Reward category",
           "Reward": "Reward",
           "Please sign in.": "Please sign in.",
           "Forgot password ?": "Forgot password ?",
@@ -108,7 +110,12 @@ export default {
           "Name": "Name",
           "Tasks": "Tasks",
           "task": "task",
-          "type": "type"
+          "reward category": "reward category",
+          "Please fill in a correct email.": "Please fill in a correct email.",
+          "Please fill in a correct password.":  "Please fill in a correct password.",
+          "Add new task": "Add new task",
+          "Assign": "Assign",
+          "Done": "Done"
         },
         fr: {
           "Welcome": "Bienvenue",
@@ -153,7 +160,12 @@ export default {
           "Name": "Nom",
           "Tasks": "Tâches",
           "task": "tâche",
-          "type": "type"
+          "reward category": "catégorie de récompense",
+          "Please fill in a correct email.": "Veuillez remplir un e-mail correct.",
+          "Please fill in a correct password.": "Veuillez remplir un mot de passe correct.",
+          "Add new task": "Ajouter une nouvelle tâche",
+          "Assign": "Attribuer",
+          "Done": "Klar"
         },
         de: {
           "Welcome": "Willkommen",
@@ -189,7 +201,7 @@ export default {
           "Add attendant": "Begleiter hinzufügen",
           "Ticks": "Zecken",
           "Max ticks": "Maximum zecken",
-          "Type": "Nett",
+          "Reward category": "Belohnungskategorie",
           "Reward": "Belohnen",
           "Please sign in.": "Bitte einloggen.",
           "Forgot password ?": "Passwort vergessen ?",
@@ -198,7 +210,12 @@ export default {
           "Name": "Naam",
           "Tasks": "Aufgaben",
           "task": "aufgabe",
-          "type": "nett"
+          "reward category": "belohnungskategorie",
+          "Please fill in a correct email.": "Bitte geben Sie eine korrekte E-Mail ein.",
+          "Please fill in a correct password.": "Bitte geben Sie eine korrekte passwort ein.",
+          "Add new task": "Neue Aufgabe hinzufügen",
+          "Assign": "Zuordnen",
+          "Done": "Finit"
         },
         nl:{
           "Welcome": "Welkom",
@@ -234,7 +251,7 @@ export default {
           "Add attendant": "Toevoegen begeleider",
           "Ticks": "Vinkjes",
           "Max ticks": "Maximum vinkjes",
-          "Type": "Soort",
+          "Reward category": "Beloningscategorie",
           "Reward": "Beloning",
           "Please sign in." : "Log in alstublieft.",
           "Forgot password ?": "Wachtwoord vergeten ?",
@@ -243,7 +260,12 @@ export default {
           "Name": "Naam",
           "Tasks": "Taken",
           "task": "taak",
-          "type": "type"
+          "reward category": "beloningscategorie",
+          "Please fill in a correct email.": "Gelieve een correct e-mailadres in te vullen.",
+          "Please fill in a correct password.": "Gelieve een correct wachtwoord in te vullen.",
+          "Add new task": "Voeg nieuwe taak toe",
+          "Assign": "Toevoegen",
+          "Done": "Klaar"
         }
       }
     }

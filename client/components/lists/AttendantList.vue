@@ -35,29 +35,28 @@
         </div>
       </div>
       <div class="bg-gray-primary rounded-b-lg">
-        <div  v-for="refugee in refugees" @click="selectedRefugeeProfile=refugee" class="p-4 bg-gray-primary grid grid-cols-2 md:grid-cols-4 justify-center items-center hover:bg-gray-secondary" v-if="showRefugees">
-          <div class="column text-xl truncate flex items-center">
+        <div  v-for="refugee in refugees" class="p-4 bg-gray-primary grid grid-cols-2 md:grid-cols-4 justify-center items-center hover:bg-gray-secondary" v-if="showRefugees">
+          <div class="column text-xl truncate flex items-center" @click="selectedRefugeeProfile=refugee">
             {{ refugee.firstname }} {{ refugee.lastname }}
           </div>
-          <div class="column text-xl truncate flex items-center justify-center hidden md:block">
+          <div class="column text-xl truncate flex items-center justify-center hidden md:block" @click="selectedRefugeeProfile=refugee">
             {{ refugee.total_ticks }}
           </div>
-          <div class="column text-xl truncate flex justify-center items-center">
+          <div class="column text-xl truncate flex justify-center items-center" @click="selectedRefugeeProfile=refugee">
             {{ refugee.country_of_origin }}
           </div>
-          <div class="column text-xl truncate flex justify-center items-center hidden md:block">
-            {{ refugee.unique_code }}
+          <div class="column text-xl truncate flex justify-center items-center" @mouseenter="hoverId=refugee.id" @mouseleave="hoverId=null">
+            <p id="refugee_UniqueCode" v-if="hoverId!==refugee.id && unique_codeIsHidden===false">{{ refugee.unique_code }}</p>
+            <p v-if="hoverId!==refugee.id && unique_codeIsHidden===true">*** ***</p>
+            <button class="hover:opacity-50" type="button" @click="unique_codeIsHidden=!unique_codeIsHidden" v-if="hoverId===refugee.id"><img class="h-full w-8" src="@/assets/eye-icon.png"></button>
           </div>
         </div>
       </div>
 
     <!-- cards -->
-    <div class="p-4 bg-gray-secondary grid grid-cols-2 md:grid-cols-4 justify-center items-center" v-if="showCards">
+    <div class="p-4 bg-gray-secondary grid grid-cols-2 md:grid-cols-3 justify-center items-center" v-if="showCards">
       <div class=" text-xl truncate flex items-center">
-        {{ $t('Type')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
-      </div>
-      <div class=" text-xl truncate flex justify-center items-center hidden md:block">
-        {{ $t('Reward')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
+        {{ $t('Name')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
       </div>
       <div class=" text-xl truncate flex justify-center items-center hidden md:block">
         {{ $t('Ticks')}}<button class="items-center"><img class="h-4 w-4" src="@/assets/arrows.svg"> </button>
@@ -67,14 +66,11 @@
       </div>
     </div>
     <div class="bg-gray-primary rounded-b-lg">
-      <div v-for="card in cards" class="p-4 bg-gray-primary grid grid-cols-2 md:grid-cols-4 justify-center items-center hover:bg-gray-secondary" v-if="showCards">
+      <div v-for="card in cards" @click="selectedCardDetail=card" class="p-4 bg-gray-primary grid grid-cols-2 md:grid-cols-3 justify-center items-center hover:bg-gray-secondary" v-if="showCards">
         <div  class="column text-xl truncate flex items-center">
-          {{card.kind}}
+           {{card.name}}
         </div>
         <div class="column text-xl truncate flex justify-center items-center hidden md:block">
-          {{card.reward}}
-        </div>
-        <div  class="column text-xl truncate flex justify-center items-center hidden md:block">
           {{card.ticks}}
         </div>
         <div  class="column text-xl truncate flex justify-center items-center">
@@ -86,8 +82,8 @@
   </div>
 
     <RefugeeRegistration class="bg-black bg-opacity-75" v-if="showRegistration" @addedRefugee="onRefugeeAdded" @closeReg="showRegistration=false"/>
-    <AddCard class="bg-black bg-opacity-75" v-if="showAddnewCard" @closeNewCard="showAddnewCard=false"/>
-    <RefugeeDrawer :refugee="selectedRefugeeProfile" @delete-refugee="onRefugeeDelete"  class="bg-black bg-opacity-75" v-if="selectedRefugeeProfile" @closeRefugeeProfile="selectedRefugeeProfile=null"/>
+    <AddCard class="bg-black bg-opacity-75" v-if="showAddnewCard" @addedCard="onCardAdded" @closeNewCard="showAddnewCard=false"/>
+    <RefugeeDrawer :refugee="selectedRefugeeProfile" @delete-refugee="onRefugeeDelete" class="bg-black bg-opacity-75" v-if="selectedRefugeeProfile" @closeRefugeeProfile="selectedRefugeeProfile=null"/>
     <DetailCard :card="selectedCardDetail" class="bg-black bg-opacity-75" v-if="selectedCardDetail" @closeCardDetail="selectedCardDetail=null"/>
   </div>
 </template>
@@ -113,15 +109,22 @@ export default {
     showRegistration: false,
     showAddnewCard: false,
     selectedRefugeeProfile: false,
-    selectedCardDetail: false
+    selectedCardDetail: false,
+    unique_codeIsHidden: true,
+    hoverId: null
   }),
   mounted() {
-    this.getRefugees()
+    this.getRefugeesForAttendant()
     this.getCards()
   },
+  computed:{
+    currentUserId() {
+      return this.$auth.user.id
+    }
+  },
   methods:{
-    getRefugees(){
-      this.$axios.$get('/api/refugees')
+    getRefugeesForAttendant(){
+      this.$axios.$get(`/api/refugees/attendant/${this.currentUserId}`)
       .then((resp) => {
         this.refugees= resp.users
       })
@@ -140,7 +143,10 @@ export default {
     onRefugeeDelete(user){
       const index = this.refugees.findIndex(userInArray => userInArray.id === user.id)
       this.refugees.splice(index, 1)
-    }
+    },
+    onCardAdded(card){
+  this.cards.push(card)
+}
   }
 }
 </script>

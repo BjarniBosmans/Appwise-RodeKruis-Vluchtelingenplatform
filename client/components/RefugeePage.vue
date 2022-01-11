@@ -4,7 +4,8 @@
   <p class="text-2xl text-dark-primary p-4 mb-4">{{$t('Reward')}} {{$t('card')}}</p>
   <div  class="grid grid-cols-1 md:grid-cols-2 gap-x-8 flex justify-between items-center">
   <div class="w-full
-   bg-gray-primary text-xl p-4 my-2 rounded-lg flex justify-between items-center hover:bg-gray-secondary" v-for="card in cards" @click="selectedCardDetail=card; cardList=false" v-if="cardList">
+   bg-gray-primary text-xl p-4 my-2 rounded-lg flex justify-between items-center hover:bg-gray-secondary"
+       v-for="card in cards" @click="selectedCardDetail=card; cardList=false" v-if="cardList">
  <div>{{ card.name}}</div>
     <div>{{card.ticks}}
     /

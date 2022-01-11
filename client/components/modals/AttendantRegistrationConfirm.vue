@@ -1,7 +1,7 @@
 <template>
   <div class="fixed justify-center items-center inset-0 z-50 flex">
     <div class="flex flex-col max-w-5xl rounded-lg shadow-lg bg-white p-8">
-      <div class="px-44 py-8">
+      <div class="px-52 py-28">
         <img class="w-full h-72 p-4 justify-center box-content" src="@/assets/account_added.svg"/>
         <p class=" text-3xl"><span class="text-accent-secondary">{{attendant.firstname}} {{attendant.lastname}}</span> {{ $t('is added')}}.</p>
         <br>

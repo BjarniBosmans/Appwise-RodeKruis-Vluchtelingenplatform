@@ -38,13 +38,14 @@
           <input class="bg-gray-secondary rounded text-2xl w-full p-2"  v-model="form.country_of_origin" id="country-input"/>
         </section>
       </div>
+      <p class="text-xl text-accent-primary w-full p-2" v-if="hasError">{{ $t('Please fill in everything') }}</p>
       <div class="p-4 flex justify-between items-center">
         <Button class="text-3xl" @click="$emit('closeReg')">{{ $t('Back')}}</Button>
         <Button class="text-3xl" type="submit" @click="showRegResult=true">{{ $t('Add')}}</Button>
       </div>
     </div>
    </form>
-    <RefugeeRegistrationConfirm class="bg-black bg-opacity-25" :refugee="created_user" v-if="created_user" @closeRegConfirm="created_user=null"/>
+    <RefugeeRegistrationConfirm class="" :refugee="created_user" v-if="created_user" @closeRegConfirm="created_user=null"/>
   </div>
 </template>
 
@@ -60,6 +61,7 @@ export default {
   middleware: 'auth',
   data:() => ({
       showRegResult: false,
+      hasError: false,
     form: {
       firstname: '',
       lastname: '',
@@ -69,7 +71,22 @@ export default {
     },
     created_user:null
     }),
-
+  watch: {
+    "form.firstname": function (firstname){
+      this.hasError= !firstname
+    },
+    'form.lastname': function (lastname){
+      this.hasError= !lastname
+    }
+    ,
+    'form.email': function (email){
+      this.hasError= !email
+    }
+    ,
+    'form.country_of_origin': function (country){
+      this.hasError= !country
+    }
+  },
   methods:{
     async addRefugee(){
       await this.$axios.post('api/refugees/add', this.form)
@@ -78,6 +95,10 @@ export default {
       })
         .then(() => {
           this.$emit("addedRefugee", this.created_user)
+          this.form.firstname=''
+          this.form.lastname=''
+          this.form.email=''
+          this.form.country_of_origin=''
         })
       .catch(error => console.log(error));
     }

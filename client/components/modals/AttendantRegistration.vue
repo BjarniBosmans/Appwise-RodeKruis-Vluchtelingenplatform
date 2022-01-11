@@ -39,13 +39,14 @@
         </section>
         <br>
       </div>
+      <p class="text-xl text-accent-primary w-full p-4" v-if="hasError">{{ $t('Please fill in everything') }}</p>
       <div class="p-4 flex justify-between items-center">
         <Button class="text-3xl" @click="$emit('closeRegAttendant')">{{ $t('Back')}}</Button>
         <Button class="text-3xl " @click="showRegResult=true">{{ $t('Add')}}</Button>
       </div>
     </div>
     </form>
-    <AttendantRegistrationConfirm class="bg-black bg-opacity-25" :attendant="created_user" v-if="created_user" @closeRegConfirmAttendant="created_user=null"/>
+    <AttendantRegistrationConfirm class="" :attendant="created_user" v-if="created_user" @closeRegConfirmAttendant="created_user=null"/>
   </div>
 </template>
 
@@ -58,6 +59,7 @@ export default {
   middleware: 'auth',
   data:() => ({
     showRegResult: false,
+    hasError: false,
     form: {
       firstname: '',
       lastname: '',
@@ -67,6 +69,21 @@ export default {
     },
     created_user:null
   }),
+  watch: {
+    "form.firstname": function (firstname){
+      this.hasError= !firstname
+    },
+    'form.lastname': function (lastname){
+      this.hasError= !lastname
+    }
+    ,
+    'form.email': function (email){
+      this.hasError= !email
+    },
+    'form.password': function (password){
+      this.hasError= !password
+    }
+    },
   methods:{
     async addAttendant(){
       await this.$axios.post('api/attendants/add', this.form)
@@ -75,6 +92,10 @@ export default {
         })
         .then(() => {
           this.$emit("addedAttendant", this.created_user)
+          this.form.firstname=''
+          this.form.lastname=''
+          this.form.email=''
+          this.form.password=''
         })
         .catch(error => console.log(error));
     }
